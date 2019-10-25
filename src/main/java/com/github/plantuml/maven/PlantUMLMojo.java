@@ -95,13 +95,6 @@ public final class PlantUMLMojo extends AbstractMojo {
 	private String config;
 
 	/**
-	 * Wether or not to keep tmp files after generation.
-	 *
-	 * @parameter property="plantuml.keepTmpFiles" default-value="false"
-	 */
-	private boolean keepTmpFiles;
-
-	/**
 	 * Specify output format. Supported values: xmi, xmi:argo, xmi:start, eps,
 	 * pdf, eps:txt, svg, png, dot, txt and utxt.
 	 *
@@ -186,9 +179,6 @@ public final class PlantUMLMojo extends AbstractMojo {
 			}
 			if (this.config != null) {
 				this.option.initConfig(this.config);
-			}
-			if (this.keepTmpFiles) {
-				OptionFlags.getInstance().setKeepTmpFiles(this.keepTmpFiles);
 			}
 			if (this.graphvizDot != null) {
 				OptionFlags.getInstance().setDotExecutable(this.graphvizDot);

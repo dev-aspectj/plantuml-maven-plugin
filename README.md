@@ -2,7 +2,7 @@
 [ ![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.funthomas424242/plantuml-maven-plugin/badge.svg?style=flat) ](https://maven-badges.herokuapp.com/maven-central/com.github.funthomas424242/plantuml-maven-plugin)
 [ ![Build Status](https://travis-ci.org/FunThomas424242/rezeptsammlung.svg?branch=master) ](https://travis-ci.org/FunThomas424242/plantuml-maven-plugin)
 [ ![Codacy code quality](https://api.codacy.com/project/badge/Grade/88bf76546176437ea389629a2087d1b5) ](https://www.codacy.com/app/FunThomas424242/plantuml-maven-plugin?utm_source=github.com&utm_medium=referral&utm_content=FunThomas424242/plantuml-maven-plugin&utm_campaign=Badge_Grade)
-[ ![Scrum Board](http://images.webestools.com/buttons.php?frm=2&btn_type=11&txt=Scrum Board) ](https://github.com/FunThomas424242/plantuml-maven-plugin/projects/1)
+[ ![Scrum Board](http://images.webestools.com/buttons.php?frm=2&btn_type=11&txt=Scrum%20Board&scaledwidth="15%") ](https://github.com/FunThomas424242/plantuml-maven-plugin/projects/1)
 
 A [maven](http://maven.apache.org/) plugin to generate UML diagrams using [PlantUML](http://plantuml.sourceforge.net/) syntax.
 [ ![Download](https://api.bintray.com/packages/jmdesprez/maven/plantuml-maven-plugin/images/download.svg) ](https://bintray.com/jmdesprez/maven/plantuml-maven-plugin/_latestVersion)

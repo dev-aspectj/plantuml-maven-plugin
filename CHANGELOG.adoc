@@ -1,0 +1,24 @@
+= Changelog
+All important changes will be stored in this file.
+
+The format is based on http://keepachangelog.com/de/[Keep a Changelog].
+The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versioning].
+
+// == [3.1.1] delivered 2018-05-11
+
+== [undelivered]
+=== Added
+
+* Changelog.adoc added for log the changes
+
+=== Changed
+
+*
+* renamed the groupId to meet the delivery rules to maven central via bintray
+* update with merge from the master of the most latest updated stable repo: https://github.com/bvfalcon/plantuml-maven-plugin
+* fork the project from jeluard at github: https://github.com/jeluard/maven-plantuml-plugin
+
+### Removed
+
+* n/a
+

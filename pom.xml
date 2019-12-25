@@ -260,6 +260,33 @@
         </developer>
     </developers>
 
+    <contributors>
+        <contributor>
+            <name>Guilherme I F L Weizenmann</name>
+            <email>guilherme@itquasar.com</email>
+            <url>https://github.com/giflw</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </contributor>
+        <contributor>
+            <name>bvfalcon</name>
+            <email>github@bychkov.name</email>
+            <url>https://github.com/bvfalcom</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </contributor>
+        <contributor>
+            <name>Huluvu424242 alias FunThomas424242 (Thomas Schubert)</name>
+            <email>funthomas424242@gmail.com</email>
+            <url>https://github.com/FunThomas424242</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </contributor>
+    </contributors>
+
     <!-- needed for license header -->
     <organization>
         <name>Julien Eluard</name>

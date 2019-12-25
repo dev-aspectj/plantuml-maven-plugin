@@ -156,6 +156,8 @@
                     <plugin>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <configuration>
+                            <attach>true</attach>
+                            <additionalJOption>-Xdoclint:none</additionalJOption>
                             <failOnError>false</failOnError>
                             <debug>false</debug>
                             <verbose>false</verbose>
@@ -163,9 +165,37 @@
                             <encoding>UTF-8</encoding>
                             <charset>UTF-8</charset>
                             <docencoding>UTF-8</docencoding>
+                            <tags>
+                                <tag>
+                                    <name>goal</name>
+                                    <placement>a</placement>
+                                    <head>Goal:</head>
+                                </tag>
+                                <tag>
+                                    <name>phase</name>
+                                    <placement>a</placement>
+                                    <head>Phase:</head>
+                                </tag>
+                                <tag>
+                                    <name>threadSafe</name>
+                                    <placement>a</placement>
+                                    <head>Thread Safe:</head>
+                                </tag>
+                                <tag>
+                                    <name>requiresDependencyResolution</name>
+                                    <placement>a</placement>
+                                    <head>Requires Dependency Resolution:</head>
+                                </tag>
+                                <tag>
+                                    <name>requiresProject</name>
+                                    <placement>a</placement>
+                                    <head>Requires Project:</head>
+                                </tag>
+                            </tags>
                         </configuration>
                         <executions>
                             <execution>
+                                <phase>package</phase>
                                 <id>attach-javadocs</id>
                                 <goals>
                                     <goal>jar</goal>

@@ -5,7 +5,7 @@
 [ ![Scrum Board](http://images.webestools.com/buttons.php?frm=2&btn_type=11&txt=Scrum%20Board&scaledwidth="15%") ](https://github.com/FunThomas424242/plantuml-maven-plugin/projects/1)
 
 A [maven](http://maven.apache.org/) plugin to generate UML diagrams using [PlantUML](http://plantuml.sourceforge.net/) syntax.
-[ ![Download](https://api.bintray.com/packages/jmdesprez/maven/plantuml-maven-plugin/images/download.svg) ](https://bintray.com/jmdesprez/maven/plantuml-maven-plugin/_latestVersion)
+[ ![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.funthomas424242/plantuml-maven-plugin/badge.svg?style=flat) ](https://maven-badges.herokuapp.com/maven-central/com.github.funthomas424242/plantuml-maven-plugin)
 
 
 # Important note

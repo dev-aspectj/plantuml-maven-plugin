@@ -7,7 +7,7 @@ jdk:
 install: skip
 
 script:
-  - ./mvnw -U -Pheadless clean site install
+  - ./mvnw -U -Pheadless,release clean site install
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

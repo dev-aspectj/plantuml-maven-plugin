@@ -1,0 +1,14 @@
+language: java
+
+
+jdk:
+  - openjdk13
+
+install: skip
+
+script:
+  - ./mvnw -U -Pheadless,release clean site install
+  -
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

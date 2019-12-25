@@ -1,6 +1,8 @@
+# target artifacte
+*.jar
+
+# build engine specific
 target/
-/.classpath
-/.project
 
 # ide specific
 .idea/

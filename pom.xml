@@ -38,7 +38,7 @@
 
     <properties>
         <java.version>1.7</java.version>
-        <javaAnimalSniffer.version>16</javaAnimalSniffer.version>
+<!--        <javaAnimalSniffer.version>16</javaAnimalSniffer.version>-->
     </properties>
 
     <dependencies>

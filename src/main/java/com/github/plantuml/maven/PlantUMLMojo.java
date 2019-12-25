@@ -17,6 +17,7 @@
 package com.github.plantuml.maven;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,77 +40,90 @@ import org.codehaus.plexus.util.FileUtils;
  */
 public final class PlantUMLMojo extends AbstractMojo {
 
-  private final Option option = new Option();
+	private final Option option = new Option();
 
-  /**
-   * Fileset to search plantuml diagrams in.
-   * @parameter property="plantuml.sourceFiles"
-   * @required
-   * @since 7232
-   */
-  private FileSet sourceFiles;
+	/**
+	 * Truncate the ouput folder.
+	 *
+	 * @parameter property="truncatePattern"
+	 * @since 1.2
+	 */
+	private String truncatePattern;
 
-  /**
-   * Directory where generated images are generated.
-   * @parameter property="plantuml.outputDirectory" default-value="${basedir}/target/plantuml"
-   * @required
-   */
-  private File outputDirectory;
-    
-  /**
-   * Whether or not to generate images in same directory as the source file.
-   * This is useful for using PlantUML diagrams in Javadoc, 
-   * as described here: 
-   * <a href="http://plantuml.sourceforge.net/javadoc.html">http://plantuml.sourceforge.net/javadoc.html</a>.
-   * 
-   * If this is set to true then outputDirectory is ignored.
-   * @parameter property="plantuml.outputInSourceDirectory" default-value="false"
-   */
-  private boolean outputInSourceDirectory;
+	/**
+	 * Fileset to search plantuml diagrams in.
+	 *
+	 * @parameter property="plantuml.sourceFiles"
+	 * @required
+	 * @since 7232
+	 */
+	private FileSet sourceFiles;
 
-  /**
-   * Charset used during generation.
-   * @parameter property="plantuml.charset"
-   */
-  private String charset;
+	/**
+	 * Directory where generated images are generated.
+	 *
+	 * @parameter property="plantuml.outputDirectory"
+	 *            default-value="${basedir}/target/plantuml"
+	 * @required
+	 */
+	private File outputDirectory;
 
-  /**
-   * External configuration file location.
-   * @parameter property="plantuml.config"
-   */
-  private String config;
+	/**
+	 * Whether or not to generate images in same directory as the source file.
+	 * This is useful for using PlantUML diagrams in Javadoc, as described here:
+	 * <a href="http://plantuml.sourceforge.net/javadoc.html">http://plantuml.
+	 * sourceforge.net/javadoc.html</a>.
+	 *
+	 * If this is set to true then outputDirectory is ignored.
+	 *
+	 * @parameter property="plantuml.outputInSourceDirectory"
+	 *            default-value="false"
+	 */
+	private boolean outputInSourceDirectory;
 
-  /**
-   * Wether or not to keep tmp files after generation.
-   * @parameter property="plantuml.keepTmpFiles" default-value="false"
-   */
-  private boolean keepTmpFiles;
+	/**
+	 * Charset used during generation.
+	 *
+	 * @parameter property="plantuml.charset"
+	 */
+	private String charset;
 
-  /**
-   * Specify output format. Supported values: xmi, xmi:argo, xmi:start, eps,  pdf, eps:txt, svg, png, dot, txt and utxt.
-   * @parameter property="plantuml.format"
-   */
-  private String format;
+	/**
+	 * External configuration file location.
+	 *
+	 * @parameter property="plantuml.config"
+	 */
+	private String config;
 
-  /**
-   * Fully qualified path to Graphviz home directory.
-   * @parameter property="plantuml.graphvizDot"
-   */
-  private String graphvizDot;
+	/**
+	 * Specify output format. Supported values: xmi, xmi:argo, xmi:start, eps,
+	 * pdf, eps:txt, svg, png, dot, txt and utxt.
+	 *
+	 * @parameter property="plantuml.format"
+	 */
+	private String format;
 
-  /**
-   * Wether or not to output details during generation.
-   * @parameter property="plantuml.verbose" default-value="false"
-   */
-  private boolean verbose;
-  
+	/**
+	 * Fully qualified path to Graphviz home directory.
+	 *
+	 * @parameter property="plantuml.graphvizDot"
+	 */
+	private String graphvizDot;
+
+	/**
+	 * Wether or not to output details during generation.
+	 *
+	 * @parameter property="plantuml.verbose" default-value="false"
+	 */
+	private boolean verbose;
+
   /**
    * Specify to include metadata in the output files.
    * @parameter property="plantuml.withMetadata"
    * @since 1.3
    */
   private boolean withMetadata = false;
-  
+
   /**
    * Specify to overwrite any output file, also if the target file is newer as the input file.
    * @parameter property="plantuml.overwrite"
@@ -117,82 +131,79 @@ public final class PlantUMLMojo extends AbstractMojo {
    */
   private boolean overwrite = false;
 
-  protected final void setFormat(final String format) {
-    if ("xmi".equalsIgnoreCase(format)) {
-      this.option.setFileFormat(FileFormat.XMI_STANDARD);
-    } else if ("xmi:argo".equalsIgnoreCase(format)) {
-      this.option.setFileFormat(FileFormat.XMI_ARGO);
-    } else if ("xmi:start".equalsIgnoreCase(format)) {
-      this.option.setFileFormat(FileFormat.XMI_STAR);
-    } else if ("eps".equalsIgnoreCase(format)) {
-      this.option.setFileFormat(FileFormat.EPS);
-    } else if ("eps:txt".equalsIgnoreCase(format)) {
-      this.option.setFileFormat(FileFormat.EPS_TEXT);
-    } else if ("svg".equalsIgnoreCase(format)) {
-      this.option.setFileFormat(FileFormat.SVG);
-    } else if ("txt".equalsIgnoreCase(format)) {
-      this.option.setFileFormat(FileFormat.ATXT);
-    } else if ("utxt".equalsIgnoreCase(format)) {
-      this.option.setFileFormat(FileFormat.UTXT);
-    } else if ("png".equalsIgnoreCase(format)) {
-      this.option.setFileFormat(FileFormat.PNG);
-    } else if ("pdf".equalsIgnoreCase(format)) {
-      this.option.setFileFormat(FileFormat.PDF);
-    } else {
-      throw new IllegalArgumentException("Unrecognized format <"+format+">");
-    }
-  }
+	protected final void setFormat(final String format) {
+		if ("xmi".equalsIgnoreCase(format)) {
+			this.option.setFileFormat(FileFormat.XMI_STANDARD);
+		} else if ("xmi:argo".equalsIgnoreCase(format)) {
+			this.option.setFileFormat(FileFormat.XMI_ARGO);
+		} else if ("xmi:start".equalsIgnoreCase(format)) {
+			this.option.setFileFormat(FileFormat.XMI_STAR);
+		} else if ("eps".equalsIgnoreCase(format)) {
+			this.option.setFileFormat(FileFormat.EPS);
+		} else if ("eps:txt".equalsIgnoreCase(format)) {
+			this.option.setFileFormat(FileFormat.EPS_TEXT);
+		} else if ("svg".equalsIgnoreCase(format)) {
+			this.option.setFileFormat(FileFormat.SVG);
+		} else if ("txt".equalsIgnoreCase(format)) {
+			this.option.setFileFormat(FileFormat.ATXT);
+		} else if ("utxt".equalsIgnoreCase(format)) {
+			this.option.setFileFormat(FileFormat.UTXT);
+		} else if ("png".equalsIgnoreCase(format)) {
+			this.option.setFileFormat(FileFormat.PNG);
+		} else if ("pdf".equalsIgnoreCase(format)) {
+			this.option.setFileFormat(FileFormat.PDF);
+		} else {
+			throw new IllegalArgumentException("Unrecognized format <" + format + ">");
+		}
+	}
 
-  @Override
-  public void execute() throws MojoExecutionException {
-    // early exit if sourceFiles directory is not available
-    final String invalidSourceFilesDirectoryWarnMsg = this.sourceFiles.getDirectory() + " is not a valid path";
-    if( null == this.sourceFiles.getDirectory() || this.sourceFiles.getDirectory().isEmpty()) {
-        getLog().warn(invalidSourceFilesDirectoryWarnMsg);
-        return;
-    }
-    File baseDir = null;
-    try {
-        baseDir = new File(this.sourceFiles.getDirectory());
-    } catch (Exception e) {
-        getLog().debug(invalidSourceFilesDirectoryWarnMsg, e);
-    }
-    if( null == baseDir || !baseDir.exists() || !baseDir.isDirectory()) {
-        getLog().warn(invalidSourceFilesDirectoryWarnMsg);
-        return;
-    }
-    if (!this.outputInSourceDirectory) {
-      if (!this.outputDirectory.exists()) {
-        // If output directoy does not exist yet create it.
-        this.outputDirectory.mkdirs();
-      }
-      if (!this.outputDirectory.isDirectory()) {
-        throw new IllegalArgumentException("<" + this.outputDirectory + "> is not a valid directory.");
-      }
-    }
+	@Override
+	public void execute() throws MojoExecutionException {
+		// early exit if sourceFiles directory is not available
+		final String invalidSourceFilesDirectoryWarnMsg = this.sourceFiles.getDirectory() + " is not a valid path";
+		if (null == this.sourceFiles.getDirectory() || this.sourceFiles.getDirectory().isEmpty()) {
+			getLog().warn(invalidSourceFilesDirectoryWarnMsg);
+			return;
+		}
+		File baseDir = null;
+		try {
+			baseDir = new File(this.sourceFiles.getDirectory());
+		} catch (Exception e) {
+			getLog().debug(invalidSourceFilesDirectoryWarnMsg, e);
+		}
+		if (null == baseDir || !baseDir.exists() || !baseDir.isDirectory()) {
+			getLog().warn(invalidSourceFilesDirectoryWarnMsg);
+			return;
+		}
+		if (!this.outputInSourceDirectory) {
+			if (!this.outputDirectory.exists()) {
+				// If output directoy does not exist yet create it.
+				this.outputDirectory.mkdirs();
+			}
+			if (!this.outputDirectory.isDirectory()) {
+				throw new IllegalArgumentException("<" + this.outputDirectory + "> is not a valid directory.");
+			}
+		}
 
-    try {
-      if (!this.outputInSourceDirectory) {
-        this.option.setOutputDir(this.outputDirectory);
-      }
-      if (this.charset != null) {
-        this.option.setCharset(this.charset);
-      }
-      if (this.config != null) {
-        this.option.initConfig(this.config);
-      }
-      if (this.keepTmpFiles) {
-        OptionFlags.getInstance().setKeepTmpFiles(this.keepTmpFiles);
-      }
-      if (this.graphvizDot != null) {
-        OptionFlags.getInstance().setDotExecutable(this.graphvizDot);
-      }
-      if (this.format != null) {
-        setFormat(this.format);
-      }
-      if (this.verbose) {
-        OptionFlags.getInstance().setVerbose(true);
-      }
+		try {
+			if (!this.outputInSourceDirectory) {
+				this.option.setOutputDir(this.outputDirectory);
+			}
+			if (this.charset != null) {
+				this.option.setCharset(this.charset);
+			}
+			if (this.config != null) {
+				this.option.initConfig(this.config);
+			}
+			if (this.graphvizDot != null) {
+				OptionFlags.getInstance().setDotExecutable(this.graphvizDot);
+			}
+			if (this.format != null) {
+				setFormat(this.format);
+			}
+			if (this.verbose) {
+				OptionFlags.getInstance().setVerbose(true);
+			}
 
       final List<File> files = FileUtils.getFiles(
         baseDir,
@@ -208,7 +219,7 @@ public final class PlantUMLMojo extends AbstractMojo {
               baseDir.toPath().relativize(file.toPath().getParent())).toFile();
         }
         this.option.setOutputDir(outDir);
-        
+
         FileFormatOption fileFormatOption = getFileFormatOption();
         if (!overwrite){
           String newName = fileFormatOption.getFileFormat().changeName(file.getName(), 0);
@@ -234,19 +245,19 @@ public final class PlantUMLMojo extends AbstractMojo {
     }
   }
 
-  protected String getCommaSeparatedList(final List<String> list) {
-    final StringBuilder builder = new StringBuilder();
-    final Iterator it = list.iterator();
-    while(it.hasNext()) {
-      final Object object = it.next();
-      builder.append(object.toString());
-      if (it.hasNext()) {
-        builder.append(",");
-      }
-    }
-    return builder.toString();
-  }
-  
+	protected String getCommaSeparatedList(final List<String> list) {
+		final StringBuilder builder = new StringBuilder();
+		final Iterator it = list.iterator();
+		while (it.hasNext()) {
+			final Object object = it.next();
+			builder.append(object.toString());
+			if (it.hasNext()) {
+				builder.append(",");
+			}
+		}
+		return builder.toString();
+	}
+
   private FileFormatOption getFileFormatOption() {
     FileFormatOption formatOptions = new FileFormatOption(this.option.getFileFormat(), this.withMetadata);
     if (formatOptions.isWithMetadata() != withMetadata){

@@ -1,6 +1,6 @@
-*This project is not maintained anymore*
 
 A [maven](http://maven.apache.org/) plugin to generate UML diagrams using [PlantUML](http://plantuml.sourceforge.net/) syntax.
+[ ![Download](https://api.bintray.com/packages/jmdesprez/maven/plantuml-maven-plugin/images/download.svg) ](https://bintray.com/jmdesprez/maven/plantuml-maven-plugin/_latestVersion)
 
 # Important note
 
@@ -21,6 +21,7 @@ To generate images from PlantUML description add following dependency to your po
       <configuration>
         <sourceFiles>
           <directory>${basedir}</directory>
+          <truncatePattern>src/main/*</truncatePattern>
           <includes>
             <include>src/main/plantuml/**/*.txt</include>
           </includes>
@@ -30,7 +31,7 @@ To generate images from PlantUML description add following dependency to your po
         <dependency>
           <groupId>net.sourceforge.plantuml</groupId>
           <artifactId>plantuml</artifactId>
-          <version>7999</version>
+          <version>1.2019.11</version>
         </dependency>
       </dependencies>
     </plugin>
@@ -43,7 +44,7 @@ Note that you must explicitely define the PlantUML version you want to use.
 Then execute command:
 
 ```
-mvn clean com.github.jeluard:plantuml-maven-plugin:generate
+mvn clean com.github.jmdesprez:plantuml-maven-plugin:generate
 ```
 
 # Extra configuration options

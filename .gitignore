@@ -1,1 +1,10 @@
 target/
+/.classpath
+/.project
+
+# ide specific
+.idea/
+plantuml-maven-plugin.iml
+
+.classpath
+.project

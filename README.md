@@ -44,7 +44,7 @@ Note that you must explicitely define the PlantUML version you want to use.
 Then execute command:
 
 ```
-mvn clean com.github.jmdesprez:plantuml-maven-plugin:generate
+mvn clean com.github.funthomas424242:plantuml-maven-plugin:generate
 ```
 
 # Extra configuration options

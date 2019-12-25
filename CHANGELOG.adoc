@@ -9,6 +9,7 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 == [undelivered]
 === Added
 
+* Maven wrapper
 * Changelog.adoc added for log the changes
 
 === Changed

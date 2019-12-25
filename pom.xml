@@ -53,7 +53,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mavenVersion>3.6.3</mavenVersion>
-        <java.version>1.7</java.version>
+        <java.version>11</java.version>
+        <maven.compiler.release>11</maven.compiler.release>
     </properties>
 
     <dependencies>
@@ -135,18 +136,21 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <showDeprecation>true</showDeprecation>
-                    <showWarnings>true</showWarnings>
+                    <encoding>UTF-8</encoding>
+                    <release>11</release>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                        <arg>--add-opens=java.base/java.lang=ALL-UNNAMED</arg>
+                        <arg>--add-opens=java.base/java.net=ALL-UNNAMED</arg>
+                    </compilerArgs>
+                    <fork>true</fork>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-plugin-plugin</artifactId>
-                <version>3.2</version>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -186,35 +190,13 @@
         </plugins>
         <pluginManagement>
             <plugins>
-                <!--This plugin's configuration is used to store Eclipse m2e settings
-                    only. It has no influence on the Maven build itself. -->
                 <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>
-                                            org.apache.maven.plugins
-                                        </groupId>
-                                        <artifactId>
-                                            maven-plugin-plugin
-                                        </artifactId>
-                                        <versionRange>[3.2,)</versionRange>
-                                        <goals>
-                                            <goal>descriptor</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore/>
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>3.6.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>

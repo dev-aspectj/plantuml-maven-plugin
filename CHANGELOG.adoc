@@ -17,6 +17,9 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 
 === Changed
 
+* maven version to maven 3.6.3 for build
+* java version to java 11 for target
+* java version to java 13 for build
 * changed to codehouse license plugin
 * update of pom metadata
 * renamed the groupId to meet the delivery rules to maven central via bintray
@@ -25,5 +28,5 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 
 ### Removed
 
-* n/a
+* eclipse specific items
 

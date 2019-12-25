@@ -28,5 +28,6 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 
 ### Removed
 
+* maven release plugin
 * eclipse specific items
 

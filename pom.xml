@@ -14,6 +14,12 @@
     A maven plugin to generate UML diagrams using PlantUML syntax
   </description>
 
+	<scm>
+		<url>scm:git:https://github.com/jmdesprez/plantuml-maven-plugin</url>
+		<connection>scm:git:git@github.com:jmdesprez/maven-plantuml-plugin</connection>
+		<developerConnection>scm:git:git@github.com:jmdesprez/plantuml-maven-plugin.git</developerConnection>
+	</scm>
+
 	<properties>
 		<java.version>1.7</java.version>
 		<javaAnimalSniffer.version>16</javaAnimalSniffer.version>
@@ -41,31 +47,6 @@
       <version>3.0.8</version>
     </dependency>
   </dependencies>
-
-	<developers>
-		<developer>
-			<id>jmdesprez</id>
-			<name>Jean-Marc Desprez</name>
-		</developer>
-		<developer>
-			<id>jeluard</id>
-			<name>Julien Eluard</name>
-		</developer>
-		<developer>
-			<id>vanuan</id>
-			<name>John Yani</name>
-		</developer>
-		<developer>
-			<id>matling</id>
-			<name>Mattias Lingdell</name>
-		</developer>
-	</developers>
-
-	<scm>
-		<url>scm:git:https://github.com/jmdesprez/plantuml-maven-plugin</url>
-		<connection>scm:git:git@github.com:jmdesprez/maven-plantuml-plugin</connection>
-		<developerConnection>scm:git:git@github.com:jmdesprez/plantuml-maven-plugin.git</developerConnection>
-	</scm>
 
 	<build>
 		<plugins>
@@ -141,16 +122,6 @@
 	</build>
 
 	<profiles>
-	    <profile>
-		    <id>bintray</id>
-			<distributionManagement>
-				<repository>
-					<id>bintray</id>
-					<url>https://api.bintray.com/maven/jmdesprez/maven/plantuml-maven-plugin</url>
-				</repository>
-			</distributionManagement>
-		</profile>
-
 		<profile>
 			<id>release</id>
 			<build>
@@ -190,6 +161,25 @@
 			</build>
 		</profile>
 	</profiles>
+
+	<developers>
+		<developer>
+			<id>jmdesprez</id>
+			<name>Jean-Marc Desprez</name>
+		</developer>
+		<developer>
+			<id>jeluard</id>
+			<name>Julien Eluard</name>
+		</developer>
+		<developer>
+			<id>vanuan</id>
+			<name>John Yani</name>
+		</developer>
+		<developer>
+			<id>matling</id>
+			<name>Mattias Lingdell</name>
+		</developer>
+	</developers>
 
 
 </project>

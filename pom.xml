@@ -53,8 +53,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mavenVersion>3.6.3</mavenVersion>
-        <java.version>11</java.version>
-        <maven.compiler.release>11</maven.compiler.release>
+        <java.build.version>13</java.build.version>
+        <java.target.version>11</java.target.version>
+        <maven.compiler.release>${java.target.version}</maven.compiler.release>
     </properties>
 
     <dependencies>
@@ -97,7 +98,7 @@
                                     <version>${mavenVersion}</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <version>13</version>
+                                    <version>${java.build.version}</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
@@ -129,7 +130,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <release>11</release>
+                    <release>${java.target.version}</release>
                     <compilerArgs>
                         <arg>-Xlint:all</arg>
                         <arg>--add-opens=java.base/java.lang=ALL-UNNAMED</arg>

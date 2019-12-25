@@ -13,7 +13,16 @@
     <description>
         A maven plugin to generate UML diagrams using PlantUML syntax
     </description>
-
+    <url>https://github.com/FunThomas424242/plantuml-maven-plugin</url>
+    <licenses>
+        <license>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <name>Apache License
+                Version 2.0, January 2004
+            </name>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <scm>
         <url>scm:git:https://github.com/FunThomas424242/plantuml-maven-plugin</url>
         <connection>scm:git:git@github.com:funthomas424242/maven-plantuml-plugin</connection>
@@ -90,12 +99,36 @@
                 <version>3.2</version>
             </plugin>
             <plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <licenseFile>LICENSE</licenseFile>
+                    <licenseName>apache_v2</licenseName>
+                    <useMissingFile>true</useMissingFile>
+                    <excludedLicenses>
+                        <excludedLicense>GNU General Public License (GPL) 1.0</excludedLicense>
+                        <excludedLicense>GNU General Public License (GPL) 2.0</excludedLicense>
+                        <excludedLicense>GNU General Public License (GPL) 3.0</excludedLicense>
+                    </excludedLicenses>
+                    <failIfWarning>true</failIfWarning>
+                    <includes>
+                        <include>**/*.java</include>
+                        <include>**/*.properties</include>
+                        <include>**/*.xml</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*.png</exclude>
+                        <exclude>**/*.json</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
+                        <id>update-header</id>
+                        <phase>process-sources</phase>
                         <goals>
-                            <goal>check</goal>
+                            <goal>update-file-header</goal>
+                            <goal>update-project-license</goal>
+                            <goal>add-third-party</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -226,6 +259,12 @@
             <name>Mattias Lingdell</name>
         </developer>
     </developers>
+
+    <!-- needed for license header -->
+    <organization>
+        <name>Julien Eluard</name>
+        <url>https://github.com/jeluard/</url>
+    </organization>
 
 
 </project>

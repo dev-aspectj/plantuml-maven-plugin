@@ -15,6 +15,7 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 
 === Changed
 
+* changed to codehouse license plugin
 * update of pom metadata
 * renamed the groupId to meet the delivery rules to maven central via bintray
 * update with merge from the master of the most latest updated stable repo: https://github.com/bvfalcon/plantuml-maven-plugin

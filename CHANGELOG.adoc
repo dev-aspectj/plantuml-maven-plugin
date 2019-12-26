@@ -5,8 +5,20 @@ The format is based on http://keepachangelog.com/de/[Keep a Changelog].
 The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versioning].
 
 // == [3.1.1] delivered 2018-05-11
+== undelivered
+=== Added
 
-== [undelivered]
+* n/a
+
+=== Changed
+
+* n/a
+
+### Removed
+
+* n/a
+
+== [1.4.0] delivered 2019-12-26
 === Added
 
 * prerequisites and enforcer plugin to meet sonatype rules for maven central

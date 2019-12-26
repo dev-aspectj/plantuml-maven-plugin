@@ -30,45 +30,41 @@ import net.sourceforge.plantuml.preproc.Defines;
 import org.apache.maven.model.FileSet;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * @phase generate-resources
- * @goal generate
- */
+@Mojo(defaultPhase = LifecyclePhase.GENERATE_RESOURCES, name = "generate")
 public final class PlantUMLMojo extends AbstractMojo {
 
-    private final Option option = new Option();
+    protected final Option option = new Option();
 
     /**
      * Truncate the ouput folder.
      *
-     * @parameter property="truncatePattern"
      * @since 1.2
      */
-    private String truncatePattern;
+    @Parameter(property = "truncatePattern")
+    protected String truncatePattern;
 
     /**
      * Fileset to search plantuml diagrams in.
      *
-     * @parameter property="plantuml.sourceFiles"
-     * @required
      * @since 7232
      */
-    private FileSet sourceFiles;
+    @Parameter(property = "plantuml.sourceFiles", required = true)
+    protected FileSet sourceFiles;
 
     /**
      * Directory where generated images are generated.
-     *
-     * @parameter property="plantuml.outputDirectory"
-     * default-value="${basedir}/target/plantuml"
-     * @required
      */
-    private File outputDirectory;
+    @Parameter(property = "plantuml.outputDirectory", defaultValue = "${basedir}/target/plantuml", required = true)
+    protected File outputDirectory;
 
     /**
      * Whether or not to generate images in same directory as the source file.
@@ -77,63 +73,56 @@ public final class PlantUMLMojo extends AbstractMojo {
      * sourceforge.net/javadoc.html</a>.
      * <p>
      * If this is set to true then outputDirectory is ignored.
-     *
-     * @parameter property="plantuml.outputInSourceDirectory"
-     * default-value="false"
      */
-    private boolean outputInSourceDirectory;
+    @Parameter(property = "plantuml.outputInSourceDirectory", defaultValue = "false")
+    protected boolean outputInSourceDirectory;
 
     /**
      * Charset used during generation.
-     *
-     * @parameter property="plantuml.charset"
      */
-    private String charset;
+    @Parameter(property = "plantuml.charset")
+    protected String charset;
 
     /**
      * External configuration file location.
-     *
-     * @parameter property="plantuml.config"
      */
-    private String config;
+    @Parameter(property = "plantuml.config")
+    protected String config;
 
     /**
      * Specify output format. Supported values: xmi, xmi:argo, xmi:start, eps,
      * pdf, eps:txt, svg, png, dot, txt and utxt.
-     *
-     * @parameter property="plantuml.format"
      */
-    private String format;
+    @Parameter(property = "plantuml.format")
+    protected String format;
 
     /**
      * Fully qualified path to Graphviz home directory.
-     *
-     * @parameter property="plantuml.graphvizDot"
      */
-    private String graphvizDot;
+    @Parameter(property = "plantuml.graphvizDot")
+    protected String graphvizDot;
 
     /**
      * Wether or not to output details during generation.
-     *
-     * @parameter property="plantuml.verbose" default-value="false"
      */
-    private boolean verbose;
+    @Parameter(property = "plantuml.verbose", defaultValue = "false")
+    protected boolean verbose;
 
     /**
      * Specify to include metadata in the output files.
      *
-     * @parameter property="plantuml.withMetadata"
      * @since 1.3
      */
-    private boolean withMetadata = false;
+    @Parameter(property = "plantuml.withMetadata")
+    protected boolean withMetadata = false;
 
     /**
      * Specify to overwrite any output file, also if the target file is newer as the input file.
      *
-     * @parameter property="plantuml.overwrite"
      * @since 1.3
      */
-    private boolean overwrite = false;
+    @Parameter(property = "plantuml.overwrite")
+    protected boolean overwrite = false;
 
     protected final void setFormat(final String format) {
         if ("xmi".equalsIgnoreCase(format)) {
@@ -262,7 +251,7 @@ public final class PlantUMLMojo extends AbstractMojo {
         return builder.toString();
     }
 
-    private FileFormatOption getFileFormatOption() {
+    protected FileFormatOption getFileFormatOption() {
         FileFormatOption formatOptions = new FileFormatOption(this.option.getFileFormat(), this.withMetadata);
         if (formatOptions.isWithMetadata() != withMetadata) {
             // Workarround to error in plantUML where the withMetadata flag is not correctly applied.

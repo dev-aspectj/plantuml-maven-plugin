@@ -17,13 +17,12 @@ If you want to use versions of PlantUML greater than 8031 you have to use versio
 To generate images from PlantUML description add following dependency to your pom.xml:
 
 ```xml
-...
 <build>
   <plugins>
     <plugin>
       <groupId>com.github.jeluard</groupId>
       <artifactId>plantuml-maven-plugin</artifactId>
-      <version>1.2</version>
+      <version>1.5.0</version>
       <configuration>
         <sourceFiles>
           <directory>${basedir}</directory>
@@ -37,7 +36,7 @@ To generate images from PlantUML description add following dependency to your po
         <dependency>
           <groupId>net.sourceforge.plantuml</groupId>
           <artifactId>plantuml</artifactId>
-          <version>1.2019.11</version>
+          <version>1.2019.13</version>
         </dependency>
       </dependencies>
     </plugin>

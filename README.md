@@ -17,7 +17,6 @@ If you want to use versions of PlantUML greater than 8031 you have to use versio
 To generate images from PlantUML description add following dependency to your pom.xml:
 
 ```xml
-...
 <build>
   <plugins>
     <plugin>

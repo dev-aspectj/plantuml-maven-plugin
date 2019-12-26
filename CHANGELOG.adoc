@@ -6,10 +6,10 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 
 // == [3.1.1] delivered 2018-05-11
 
-== [undelivered]
+== [1.5.0] delivered 2019-12-26
 === Added
 
-* n/a
+* https://github.com/FunThomas424242/plantuml-maven-plugin/issues/13[issue 13] support plantuml 1.2019.13
 
 === Changed
 

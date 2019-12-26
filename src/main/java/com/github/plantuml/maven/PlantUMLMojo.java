@@ -42,7 +42,7 @@ import java.util.List;
 @Mojo(defaultPhase = LifecyclePhase.GENERATE_RESOURCES, name = "generate")
 public final class PlantUMLMojo extends AbstractMojo {
 
-    private final Option option = new Option();
+    protected final Option option = new Option();
 
     /**
      * Truncate the ouput folder.
@@ -50,7 +50,7 @@ public final class PlantUMLMojo extends AbstractMojo {
      * @since 1.2
      */
     @Parameter(property = "truncatePattern")
-    private String truncatePattern;
+    protected String truncatePattern;
 
     /**
      * Fileset to search plantuml diagrams in.
@@ -58,13 +58,13 @@ public final class PlantUMLMojo extends AbstractMojo {
      * @since 7232
      */
     @Parameter(property = "plantuml.sourceFiles", required = true)
-    private FileSet sourceFiles;
+    protected FileSet sourceFiles;
 
     /**
      * Directory where generated images are generated.
      */
     @Parameter(property = "plantuml.outputDirectory", defaultValue = "${basedir}/target/plantuml", required = true)
-    private File outputDirectory;
+    protected File outputDirectory;
 
     /**
      * Whether or not to generate images in same directory as the source file.
@@ -75,38 +75,38 @@ public final class PlantUMLMojo extends AbstractMojo {
      * If this is set to true then outputDirectory is ignored.
      */
     @Parameter(property = "plantuml.outputInSourceDirectory", defaultValue = "false")
-    private boolean outputInSourceDirectory;
+    protected boolean outputInSourceDirectory;
 
     /**
      * Charset used during generation.
      */
     @Parameter(property = "plantuml.charset")
-    private String charset;
+    protected String charset;
 
     /**
      * External configuration file location.
      */
     @Parameter(property = "plantuml.config")
-    private String config;
+    protected String config;
 
     /**
      * Specify output format. Supported values: xmi, xmi:argo, xmi:start, eps,
      * pdf, eps:txt, svg, png, dot, txt and utxt.
      */
     @Parameter(property = "plantuml.format")
-    private String format;
+    protected String format;
 
     /**
      * Fully qualified path to Graphviz home directory.
      */
     @Parameter(property = "plantuml.graphvizDot")
-    private String graphvizDot;
+    protected String graphvizDot;
 
     /**
      * Wether or not to output details during generation.
      */
     @Parameter(property = "plantuml.verbose", defaultValue = "false")
-    private boolean verbose;
+    protected boolean verbose;
 
     /**
      * Specify to include metadata in the output files.
@@ -114,7 +114,7 @@ public final class PlantUMLMojo extends AbstractMojo {
      * @since 1.3
      */
     @Parameter(property = "plantuml.withMetadata")
-    private boolean withMetadata = false;
+    protected boolean withMetadata = false;
 
     /**
      * Specify to overwrite any output file, also if the target file is newer as the input file.
@@ -122,7 +122,7 @@ public final class PlantUMLMojo extends AbstractMojo {
      * @since 1.3
      */
     @Parameter(property = "plantuml.overwrite")
-    private boolean overwrite = false;
+    protected boolean overwrite = false;
 
     protected final void setFormat(final String format) {
         if ("xmi".equalsIgnoreCase(format)) {
@@ -251,7 +251,7 @@ public final class PlantUMLMojo extends AbstractMojo {
         return builder.toString();
     }
 
-    private FileFormatOption getFileFormatOption() {
+    protected FileFormatOption getFileFormatOption() {
         FileFormatOption formatOptions = new FileFormatOption(this.option.getFileFormat(), this.withMetadata);
         if (formatOptions.isWithMetadata() != withMetadata) {
             // Workarround to error in plantUML where the withMetadata flag is not correctly applied.

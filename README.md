@@ -36,7 +36,7 @@ To generate images from PlantUML description add following dependency to your po
         <dependency>
           <groupId>net.sourceforge.plantuml</groupId>
           <artifactId>plantuml</artifactId>
-          <version>8059</version>
+          <version>1.2019.13</version>
           <scope>runtime</scope>
         </dependency>
       </dependencies>

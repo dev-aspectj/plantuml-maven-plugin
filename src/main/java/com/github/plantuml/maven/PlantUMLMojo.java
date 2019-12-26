@@ -30,16 +30,16 @@ import net.sourceforge.plantuml.preproc.Defines;
 import org.apache.maven.model.FileSet;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * @phase generate-resources
- * @goal generate
- */
+@Mojo(defaultPhase = LifecyclePhase.GENERATE_RESOURCES, name = "generate")
 public final class PlantUMLMojo extends AbstractMojo {
 
     private final Option option = new Option();
@@ -47,27 +47,23 @@ public final class PlantUMLMojo extends AbstractMojo {
     /**
      * Truncate the ouput folder.
      *
-     * @parameter property="truncatePattern"
      * @since 1.2
      */
+    @Parameter(property = "truncatePattern")
     private String truncatePattern;
 
     /**
      * Fileset to search plantuml diagrams in.
      *
-     * @parameter property="plantuml.sourceFiles"
-     * @required
      * @since 7232
      */
+    @Parameter(property = "plantuml.sourceFiles", required = true)
     private FileSet sourceFiles;
 
     /**
      * Directory where generated images are generated.
-     *
-     * @parameter property="plantuml.outputDirectory"
-     * default-value="${basedir}/target/plantuml"
-     * @required
      */
+    @Parameter(property = "plantuml.outputDirectory", defaultValue = "${basedir}/target/plantuml", required = true)
     private File outputDirectory;
 
     /**
@@ -77,62 +73,55 @@ public final class PlantUMLMojo extends AbstractMojo {
      * sourceforge.net/javadoc.html</a>.
      * <p>
      * If this is set to true then outputDirectory is ignored.
-     *
-     * @parameter property="plantuml.outputInSourceDirectory"
-     * default-value="false"
      */
+    @Parameter(property = "plantuml.outputInSourceDirectory", defaultValue = "false")
     private boolean outputInSourceDirectory;
 
     /**
      * Charset used during generation.
-     *
-     * @parameter property="plantuml.charset"
      */
+    @Parameter(property = "plantuml.charset")
     private String charset;
 
     /**
      * External configuration file location.
-     *
-     * @parameter property="plantuml.config"
      */
+    @Parameter(property = "plantuml.config")
     private String config;
 
     /**
      * Specify output format. Supported values: xmi, xmi:argo, xmi:start, eps,
      * pdf, eps:txt, svg, png, dot, txt and utxt.
-     *
-     * @parameter property="plantuml.format"
      */
+    @Parameter(property = "plantuml.format")
     private String format;
 
     /**
      * Fully qualified path to Graphviz home directory.
-     *
-     * @parameter property="plantuml.graphvizDot"
      */
+    @Parameter(property = "plantuml.graphvizDot")
     private String graphvizDot;
 
     /**
      * Wether or not to output details during generation.
-     *
-     * @parameter property="plantuml.verbose" default-value="false"
      */
+    @Parameter(property = "plantuml.verbose", defaultValue = "false")
     private boolean verbose;
 
     /**
      * Specify to include metadata in the output files.
      *
-     * @parameter property="plantuml.withMetadata"
      * @since 1.3
      */
+    @Parameter(property = "plantuml.withMetadata")
     private boolean withMetadata = false;
 
     /**
      * Specify to overwrite any output file, also if the target file is newer as the input file.
      *
-     * @parameter property="plantuml.overwrite"
      * @since 1.3
      */
+    @Parameter(property = "plantuml.overwrite")
     private boolean overwrite = false;
 
     protected final void setFormat(final String format) {

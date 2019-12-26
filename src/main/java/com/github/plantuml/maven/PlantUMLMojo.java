@@ -126,25 +126,25 @@ public final class PlantUMLMojo extends AbstractMojo {
 
     protected final void setFormat(final String format) {
         if ("xmi".equalsIgnoreCase(format)) {
-            this.option.setFileFormat(FileFormat.XMI_STANDARD);
+            this.option.setFileFormatOption(new FileFormatOption(FileFormat.XMI_STANDARD));
         } else if ("xmi:argo".equalsIgnoreCase(format)) {
-            this.option.setFileFormat(FileFormat.XMI_ARGO);
+            this.option.setFileFormatOption(new FileFormatOption(FileFormat.XMI_ARGO));
         } else if ("xmi:start".equalsIgnoreCase(format)) {
-            this.option.setFileFormat(FileFormat.XMI_STAR);
+            this.option.setFileFormatOption(new FileFormatOption(FileFormat.XMI_STAR));
         } else if ("eps".equalsIgnoreCase(format)) {
-            this.option.setFileFormat(FileFormat.EPS);
+            this.option.setFileFormatOption(new FileFormatOption(FileFormat.EPS));
         } else if ("eps:txt".equalsIgnoreCase(format)) {
-            this.option.setFileFormat(FileFormat.EPS_TEXT);
+            this.option.setFileFormatOption(new FileFormatOption(FileFormat.EPS_TEXT));
         } else if ("svg".equalsIgnoreCase(format)) {
-            this.option.setFileFormat(FileFormat.SVG);
+            this.option.setFileFormatOption(new FileFormatOption(FileFormat.SVG));
         } else if ("txt".equalsIgnoreCase(format)) {
-            this.option.setFileFormat(FileFormat.ATXT);
+            this.option.setFileFormatOption(new FileFormatOption(FileFormat.ATXT));
         } else if ("utxt".equalsIgnoreCase(format)) {
-            this.option.setFileFormat(FileFormat.UTXT);
+            this.option.setFileFormatOption(new FileFormatOption(FileFormat.UTXT));
         } else if ("png".equalsIgnoreCase(format)) {
-            this.option.setFileFormat(FileFormat.PNG);
+            this.option.setFileFormatOption(new FileFormatOption(FileFormat.PNG));
         } else if ("pdf".equalsIgnoreCase(format)) {
-            this.option.setFileFormat(FileFormat.PDF);
+            this.option.setFileFormatOption(new FileFormatOption(FileFormat.PDF));
         } else {
             throw new IllegalArgumentException("Unrecognized format <" + format + ">");
         }
@@ -252,10 +252,10 @@ public final class PlantUMLMojo extends AbstractMojo {
     }
 
     protected FileFormatOption getFileFormatOption() {
-        FileFormatOption formatOptions = new FileFormatOption(this.option.getFileFormat(), this.withMetadata);
+        FileFormatOption formatOptions = new FileFormatOption(this.option.getFileFormatOption().getFileFormat(), this.withMetadata);
         if (formatOptions.isWithMetadata() != withMetadata) {
             // Workarround to error in plantUML where the withMetadata flag is not correctly applied.
-            return new FileFormatOption(this.option.getFileFormat());
+            return new FileFormatOption(this.option.getFileFormatOption().getFileFormat());
         }
         return formatOptions;
     }

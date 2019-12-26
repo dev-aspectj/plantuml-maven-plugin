@@ -9,6 +9,19 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 == [undelivered]
 === Added
 
+* n/a
+
+=== Changed
+
+* n/a
+
+### Removed
+
+* n/a
+
+== [1.4.0] delivered 2019-12-26
+=== Added
+
 * prerequisites and enforcer plugin to meet sonatype rules for maven central
 * codehouse versions plugin
 * github automated files and actions

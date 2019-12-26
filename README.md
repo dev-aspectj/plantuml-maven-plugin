@@ -10,7 +10,7 @@ A [maven](http://maven.apache.org/) plugin to generate UML diagrams using [Plant
 
 # Important note
 
-If you want to use versions of PlantUML greater than 8031 you have to use version 1.5.0 and following of this plugin.
+If you want to use versions of PlantUML greater than 8059 you have to use version 1.5.0 and following of this plugin.
 
 # Usage
 

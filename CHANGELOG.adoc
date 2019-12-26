@@ -13,6 +13,8 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 
 === Changed
 
+* https://github.com/FunThomas424242/plantuml-maven-plugin/issues/7[issue 7] upgrade build plugin versions
+* https://github.com/FunThomas424242/plantuml-maven-plugin/issues/7[issue 7] maven plugin api upgrade
 * https://github.com/FunThomas424242/plantuml-maven-plugin/issues/10[issue 10] decouple plugin from plantuml via scope provided (license clash with gpl)
 
 ### Removed

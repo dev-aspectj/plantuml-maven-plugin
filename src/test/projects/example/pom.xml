@@ -31,14 +31,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <!--    <dependencies>-->
+    <!--        <dependency>-->
+    <!--            <groupId>junit</groupId>-->
+    <!--            <artifactId>junit</artifactId>-->
+    <!--            <version>4.10</version>-->
+    <!--            <scope>test</scope>-->
+    <!--        </dependency>-->
+    <!--    </dependencies>-->
     <build>
         <plugins>
             <plugin>
@@ -46,9 +46,9 @@
                 <artifactId>plantuml-maven-plugin</artifactId>
                 <version>1.5.0</version>
                 <configuration>
+                    <truncatePattern>src/main/*</truncatePattern>
                     <sourceFiles>
                         <directory>${basedir}</directory>
-                        <truncatePattern>src/main/*</truncatePattern>
                         <includes>
                             <include>src/main/plantuml/**/*.txt</include>
                         </includes>

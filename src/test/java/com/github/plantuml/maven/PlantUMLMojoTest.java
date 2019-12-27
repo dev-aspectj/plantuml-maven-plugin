@@ -22,9 +22,7 @@
 //
 //import static org.junit.jupiter.api.Assertions.*;
 //
-////https://maven.apache.org/plugin-developers/plugin-testing.html
-////https://cwiki.apache.org/confluence/display/MAVEN/Creating+a+Maven+Integration+Test
-//// http://takari.io/book/70-testing.html
+
 //
 //class PlantUMLMojoTest extends AbstractMavenIntegrationTestCase{
 //

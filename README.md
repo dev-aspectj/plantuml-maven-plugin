@@ -7,6 +7,9 @@
 A [maven](http://maven.apache.org/) plugin to generate UML diagrams using [PlantUML](http://plantuml.sourceforge.net/) syntax.
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.funthomas424242/plantuml-maven-plugin/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.github.funthomas424242/plantuml-maven-plugin)
 
+This project is a fork of https://github.com/jeluard/maven-plantuml-plugin.
+Many thanks to Julien Eluard, the founder of the original project. 
+Big thanks also to all the other contributors in the source control system tree.
 
 # Important note
 

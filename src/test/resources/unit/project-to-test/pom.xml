@@ -36,7 +36,7 @@
             <plugin>
                 <groupId>com.github.funthomas424242</groupId>
                 <artifactId>plantuml-maven-plugin</artifactId>
-                <version>${it-plugin.version}</version>
+                <version>@project.version@</version>
                 <configuration>
                     <outputDirectory>${basedir}/target/plantuml</outputDirectory>
                     <truncatePattern>src/main/*</truncatePattern>

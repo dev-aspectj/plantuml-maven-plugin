@@ -1,4 +1,4 @@
-package com.github.plantuml.maven;
+package examples;
 
 /*-
  * #%L

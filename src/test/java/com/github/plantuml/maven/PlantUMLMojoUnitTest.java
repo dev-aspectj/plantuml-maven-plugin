@@ -26,14 +26,16 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 // https://maven.apache.org/plugin-developers/plugin-testing.html
 // https://cwiki.apache.org/confluence/display/MAVEN/Creating+a+Maven+Integration+Test
-public class PlantUMLMojoTest {
+public class PlantUMLMojoUnitTest {
 
 
     @Rule
@@ -60,7 +62,9 @@ public class PlantUMLMojoTest {
         final PlantUMLMojo myMojo = (PlantUMLMojo) rule.lookupMojo("generate", pom);
         assertNotNull(myMojo);
         myMojo.execute();
-
+        assertNotNull(myMojo.outputDirectory);
+        final Path plantumlTargetDir = Paths.get("target/plantuml");
+        assertEquals(plantumlTargetDir.toAbsolutePath().toFile(),myMojo.outputDirectory);
     }
 
     /**

@@ -31,6 +31,8 @@ import org.junit.runner.RunWith;
 
 import java.io.File;
 
+import static io.takari.maven.testing.TestResources.assertFilesPresent;
+
 // http://takari.io/book/70-testing.html
 @RunWith(MavenJUnitTestRunner.class)
 @MavenVersions({"3.6.3", "3.6.2", "3.6.1", "3.6.0", "3.5.4", "3.5.3","3.5.2","3.5.0"})
@@ -54,5 +56,6 @@ public class ValidMavenVersionsTest {
                 .execute("clean", "com.github.funthomas424242:plantuml-maven-plugin:generate");
 
         result.assertErrorFreeLog();
+        assertFilesPresent(basedir, "target/plantuml/src/main/plantuml/AblaufManuelleGenerierung.png");
     }
 }

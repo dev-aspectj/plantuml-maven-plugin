@@ -54,7 +54,6 @@ public class PlantUMLMojoTest {
     @Test
     public void testSomething()
             throws Exception {
-//        File pom = rule.getTestFile("src/test/resources/unit/project-to-test/pom.xml");
         File pom = Paths.get("src/test/resources/unit/project-to-test/pom.xml").toFile();
         assertNotNull(pom);
         assertTrue(pom.exists());

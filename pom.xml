@@ -261,7 +261,7 @@
                 <version>3.2.1</version>
                 <configuration>
                     <projectsDirectory>src/examples</projectsDirectory>
-                    <cloneProjectsTo>${project.build.directory}/it/examples</cloneProjectsTo>
+                    <cloneProjectsTo>${project.build.directory}/test-examples-invoker</cloneProjectsTo>
                     <settingsFile>src/examples/settings.xml</settingsFile>
                     <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
                     <preBuildHookScript>prebuild</preBuildHookScript>

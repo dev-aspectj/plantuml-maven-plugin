@@ -20,35 +20,19 @@ package com.github.plantuml.maven;
  * #L%
  */
 
-import org.apache.maven.plugin.testing.MojoRule;
+import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.plugin.testing.WithoutMojo;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 // https://maven.apache.org/plugin-developers/plugin-testing.html
 // https://cwiki.apache.org/confluence/display/MAVEN/Creating+a+Maven+Integration+Test
-public class PlantUMLMojoUnitTest {
+public class PlantUMLMojoUnitTest extends AbstractMojoTestCase {
 
-
-    @Rule
-    public MojoRule rule = new MojoRule() {
-
-        @Override
-        protected void before() throws Throwable {
-        }
-
-        @Override
-        protected void after() {
-        }
-    };
 
     /**
      * @throws Exception if any
@@ -59,12 +43,12 @@ public class PlantUMLMojoUnitTest {
         File pom = Paths.get("src/test/resources/unit/project-to-test/pom.xml").toFile();
         assertNotNull(pom);
         assertTrue(pom.exists());
-        final PlantUMLMojo myMojo = (PlantUMLMojo) rule.lookupMojo("generate", pom);
+        final PlantUMLMojo myMojo = (PlantUMLMojo) lookupMojo("generate", pom);
         assertNotNull(myMojo);
         myMojo.execute();
         assertNotNull(myMojo.outputDirectory);
         final Path plantumlTargetDir = Paths.get("target/plantuml");
-        assertEquals(plantumlTargetDir.toAbsolutePath().toFile(),myMojo.outputDirectory);
+        assertEquals(plantumlTargetDir.toAbsolutePath().toFile(), myMojo.outputDirectory);
     }
 
     /**

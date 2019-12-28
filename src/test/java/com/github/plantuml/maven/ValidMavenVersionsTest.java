@@ -34,7 +34,7 @@ import java.io.File;
 // http://takari.io/book/70-testing.html
 @RunWith(MavenJUnitTestRunner.class)
 @MavenVersions({"3.6.3", "3.6.2", "3.6.1", "3.6.0", "3.5.4", "3.5.3","3.5.2","3.5.0"})
-public class ExampleTest {
+public class ValidMavenVersionsTest {
 
     @Rule
     public final TestResources resources = new TestResources("src/test/resources/unit", "target/test-projects");
@@ -42,7 +42,7 @@ public class ExampleTest {
     public final MavenRuntime mavenRuntime;
 
 
-    public ExampleTest(MavenRuntime.MavenRuntimeBuilder builder) throws Exception {
+    public ValidMavenVersionsTest(MavenRuntime.MavenRuntimeBuilder builder) throws Exception {
         this.mavenRuntime = builder.build();
     }
 

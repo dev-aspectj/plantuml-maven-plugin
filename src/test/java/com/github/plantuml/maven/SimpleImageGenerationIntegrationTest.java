@@ -20,39 +20,33 @@ package com.github.plantuml.maven;
  * #L%
  */
 
+
+import io.takari.maven.testing.TestMavenRuntime;
 import io.takari.maven.testing.TestResources;
-import io.takari.maven.testing.executor.MavenExecutionResult;
-import io.takari.maven.testing.executor.MavenRuntime;
-import io.takari.maven.testing.executor.MavenVersions;
-import io.takari.maven.testing.executor.junit.MavenJUnitTestRunner;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.io.File;
 
+import static io.takari.maven.testing.TestMavenRuntime.newParameter;
+import static io.takari.maven.testing.TestResources.assertFilesPresent;
+
 // http://takari.io/book/70-testing.html
-@RunWith(MavenJUnitTestRunner.class)
-@MavenVersions({"3.6.3", "3.6.2", "3.6.1", "3.6.0", "3.5.4", "3.5.3","3.5.2","3.5.0"})
-public class ExampleTest {
+public class SimpleImageGenerationIntegrationTest {
 
     @Rule
     public final TestResources resources = new TestResources("src/test/resources/unit", "target/test-projects");
 
-    public final MavenRuntime mavenRuntime;
+    @Rule
+    public final TestMavenRuntime maven = new TestMavenRuntime();
 
-
-    public ExampleTest(MavenRuntime.MavenRuntimeBuilder builder) throws Exception {
-        this.mavenRuntime = builder.build();
-    }
 
     @Test
-    public void buildExample() throws Exception {
-        File basedir = resources.getBasedir("project-to-test");
-        MavenExecutionResult result = mavenRuntime
-                .forProject(basedir)
-                .execute("clean", "com.github.funthomas424242:plantuml-maven-plugin:generate");
-
-        result.assertErrorFreeLog();
+    public void generatePngExample() throws Exception {
+        final File basedir = resources.getBasedir("project-to-test");
+        maven.executeMojo(basedir, "generate", newParameter("name", "value"));
+        assertFilesPresent(basedir, "target/plantuml/src/main/plantuml/Statechart.png");
     }
 }
+
+

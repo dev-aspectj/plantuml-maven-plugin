@@ -31,6 +31,10 @@ import java.nio.file.Paths;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+// https://maven.apache.org/plugin-developers/plugin-testing.html
+// https://cwiki.apache.org/confluence/display/MAVEN/Creating+a+Maven+Integration+Test
+// http://takari.io/book/70-testing.html
+
 public class PlantUMLMojoTest {
 
 

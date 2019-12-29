@@ -4,11 +4,13 @@ language: java
 jdk:
   - openjdk13
 
-install: skip
+
+  # We need GraphViz to draw figures of graphs and lattices:
+install:
+  - sudo apt-get install graphviz
 
 script:
   - ./mvnw -U -Pheadless,release clean site install
-  -
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

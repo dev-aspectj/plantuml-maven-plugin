@@ -7,13 +7,10 @@ jdk:
 
   # We need GraphViz to draw figures of graphs and lattices:
 install:
-  - "sudo apt-get install graphviz"
+  - sudo apt-get install graphviz
 
 script:
   - ./mvnw -U -Pheadless,release clean site install
-  - echo "#######################################"
-  - cat target/test-examples-compatibility/ValidMavenVersionsTest_buildExample\[3.6.3\]_project-to-test/log.txt
-  - echo "#######################################"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

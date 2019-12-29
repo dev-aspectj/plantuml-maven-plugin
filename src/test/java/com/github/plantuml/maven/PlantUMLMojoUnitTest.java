@@ -29,6 +29,8 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static org.junit.jupiter.api.Assumptions.assumingThat;
+
 
 // https://maven.apache.org/plugin-developers/plugin-testing.html
 // https://cwiki.apache.org/confluence/display/MAVEN/Creating+a+Maven+Integration+Test
@@ -43,14 +45,18 @@ public class PlantUMLMojoUnitTest extends AbstractMojoTestCase {
     public void testSomething()
             throws Exception {
         final File pom = Paths.get("src/test/resources/unit/project-to-test/pom.xml").toFile();
-        assertNotNull(pom);
-        assertTrue(pom.exists());
+        assumingThat(pom==null || !pom.exists(),()->{
+            fail("test project pom not found");
+        });
         final PlantUMLMojo myMojo = (PlantUMLMojo) lookupMojo("generate", pom);
         assertNotNull(myMojo);
         assertNotNull(myMojo.outputDirectory);
+
+        // check outputDirectory
         final Path plantumlTargetDir = Paths.get("target/plantuml");
         assertEquals(plantumlTargetDir.toAbsolutePath().toFile(), myMojo.outputDirectory);
 
+        // execute Mojo
         myMojo.execute();
     }
 

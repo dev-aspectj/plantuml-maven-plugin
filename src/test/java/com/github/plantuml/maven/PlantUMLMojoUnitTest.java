@@ -22,6 +22,7 @@ package com.github.plantuml.maven;
 
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.plugin.testing.WithoutMojo;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -38,17 +39,19 @@ public class PlantUMLMojoUnitTest extends AbstractMojoTestCase {
      * @throws Exception if any
      */
     @Test
+    @DisplayName("Check default values of mojo parameters")
     public void testSomething()
             throws Exception {
-        File pom = Paths.get("src/test/resources/unit/project-to-test/pom.xml").toFile();
+        final File pom = Paths.get("src/test/resources/unit/project-to-test/pom.xml").toFile();
         assertNotNull(pom);
         assertTrue(pom.exists());
         final PlantUMLMojo myMojo = (PlantUMLMojo) lookupMojo("generate", pom);
         assertNotNull(myMojo);
-        myMojo.execute();
         assertNotNull(myMojo.outputDirectory);
         final Path plantumlTargetDir = Paths.get("target/plantuml");
         assertEquals(plantumlTargetDir.toAbsolutePath().toFile(), myMojo.outputDirectory);
+
+        myMojo.execute();
     }
 
     /**

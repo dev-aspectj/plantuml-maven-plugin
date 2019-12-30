@@ -42,9 +42,17 @@ public class SimpleCompatibilityIntegrationTest {
 
 
     @Test
-    public void generatePngExample() throws Exception {
+    public void checkFunThomas424242Mojo() throws Exception {
         final File basedir = resources.getBasedir("truncate-project");
-        maven.executeMojo(basedir, "generate", newParameter("unused", "unused"));
+        maven.executeMojo(basedir, "generate", newParameter("-P", "funthomas424242"));
+        assertFilesPresent(basedir, "target/plantuml/AblaufManuelleGenerierung.png");
+        assertFilesPresent(basedir, "target/plantuml/QueueStatechart.png");
+    }
+
+    @Test
+    public void checkBvFalconMojo() throws Exception {
+        final File basedir = resources.getBasedir("truncate-project");
+        maven.executeMojo(basedir, "generate", newParameter("unused", "bvfalcon"));
         assertFilesPresent(basedir, "target/plantuml/AblaufManuelleGenerierung.png");
         assertFilesPresent(basedir, "target/plantuml/QueueStatechart.png");
     }

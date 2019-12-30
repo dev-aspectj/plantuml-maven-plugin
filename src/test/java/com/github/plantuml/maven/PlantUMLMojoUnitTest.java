@@ -20,9 +20,7 @@ package com.github.plantuml.maven;
  * #L%
  */
 
-import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +42,7 @@ public class PlantUMLMojoUnitTest extends AbstractMojoTestCase {
      */
     @Test
     @DisplayName("Check default values of mojo parameters")
-    public void testSomething() throws MojoExecutionException {
+    public void testSomething() {
         final File pom = Paths.get("src/test/resources/unit/project-to-test/pom.xml").toFile();
         assumingThat(pom == null || !pom.exists(), () -> {
             fail("test project pom not found");
@@ -69,32 +67,8 @@ public class PlantUMLMojoUnitTest extends AbstractMojoTestCase {
         assertNotNull(mojo.sourceFiles);
         assertEquals(Paths.get("").toAbsolutePath().toString(), mojo.sourceFiles.getDirectory().toString());
 
-        // execute Mojo
-        mojo.execute();
-    }
-
-    /**
-     * @throws Exception if any
-     */
-    @Test
-    @Disabled("waiting to resolve issue #17")
-    @DisplayName("Check path truncate")
-    public void checkPathTruncate() throws MojoExecutionException {
-        final File pom = Paths.get("src/test/resources/unit/project-to-test/pom.xml").toFile();
-        assumingThat(pom == null || !pom.exists(), () -> {
-            fail("test project pom not found");
-        });
-
-        final PlantUMLMojo mojo = assertDoesNotThrow(() -> {
-            return (PlantUMLMojo) lookupMojo("generate", pom);
-        });
-
-        /* check required parameters */
+        /* check others parameters */
         assertNotNull(mojo.truncatePattern);
-//        assertEquals(Paths.get("").toAbsolutePath().toString(), mojo.sourceFiles.getDirectory().toString());
-
-        // execute Mojo
-        mojo.execute();
+        assertEquals("src/main/*", mojo.truncatePattern);
     }
-
 }

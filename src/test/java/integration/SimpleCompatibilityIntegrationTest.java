@@ -1,4 +1,4 @@
-package examples;
+package integration;
 
 /*-
  * #%L
@@ -32,10 +32,10 @@ import static io.takari.maven.testing.TestMavenRuntime.newParameter;
 import static io.takari.maven.testing.TestResources.assertFilesPresent;
 
 // http://takari.io/book/70-testing.html
-public class SimpleImageIntegrationTest {
+public class SimpleCompatibilityIntegrationTest {
 
     @Rule
-    public final TestResources resources = new TestResources("src/examples", "target/test-examples");
+    public final TestResources resources = new TestResources("src/test/resources/integration", "target/test-integration");
 
     @Rule
     public final TestMavenRuntime maven = new TestMavenRuntime();
@@ -43,9 +43,9 @@ public class SimpleImageIntegrationTest {
 
     @Test
     public void generatePngExample() throws Exception {
-        final File basedir = resources.getBasedir("example");
+        final File basedir = resources.getBasedir("truncate-project");
         maven.executeMojo(basedir, "generate", newParameter("unused", "unused"));
-        assertFilesPresent(basedir, "target/plantuml/Statechart.png");
+        assertFilesPresent(basedir, "target/plantuml/AblaufManuelleGenerierung.png");
         assertFilesPresent(basedir, "target/plantuml/QueueStatechart.png");
     }
 }

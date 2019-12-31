@@ -105,7 +105,7 @@
             <pluginRepositories>
                 <pluginRepository>
                     <id>bintray-giflw</id>
-                    <url>https://dl.bintray.com/jmdesprez/maven</url>
+                    <url>https://jcenter.bintray.com</url>
                 </pluginRepository>
             </pluginRepositories>
             <build>

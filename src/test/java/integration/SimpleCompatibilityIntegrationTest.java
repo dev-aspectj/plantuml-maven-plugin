@@ -61,13 +61,17 @@ public class SimpleCompatibilityIntegrationTest {
         assertFilesPresent(basedir, "target/plantuml/QueueStatechart.png");
     }
 
-//    @Test
-//    public void checkBvFalconMojo() throws Exception {
-//        final File basedir = resources.getBasedir("truncate-project");
-//        maven.executeMojo(basedir, "generate", newParameter("P", "bvfalcon"));
-//        assertFilesPresent(basedir, "target/plantuml/AblaufManuelleGenerierung.png");
-//        assertFilesPresent(basedir, "target/plantuml/QueueStatechart.png");
-//    }
+    @Test
+    public void checkBvFalconMojo() throws Exception {
+        final File basedir = resources.getBasedir("truncate-project");
+        final MavenExecution mavenExecution = maven
+                .forProject(basedir)
+                .withCliOption("-Pbvfalcon");
+        final MavenExecutionResult result = mavenExecution.execute("clean", "com.github.jmdesprez:plantuml-maven-plugin:generate");
+        result.assertErrorFreeLog();
+        assertFilesPresent(basedir, "target/plantuml/AblaufManuelleGenerierung.png");
+        assertFilesPresent(basedir, "target/plantuml/QueueStatechart.png");
+    }
 }
 
 

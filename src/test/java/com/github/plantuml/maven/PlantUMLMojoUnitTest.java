@@ -23,7 +23,6 @@ package com.github.plantuml.maven;
 import io.takari.maven.testing.TestMavenRuntime;
 import io.takari.maven.testing.TestResources;
 import org.apache.maven.execution.MavenSession;
-import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.project.MavenProject;
 import org.junit.Before;
@@ -73,15 +72,11 @@ public class PlantUMLMojoUnitTest {
         final MavenProject mavenProject = maven.readMavenProject(basedir);
         final MavenSession mavenSession = maven.newMavenSession(mavenProject);
         final MojoExecution mojoExecution = maven.newMojoExecution("generate");
-        final Mojo mojo = maven.lookupConfiguredMojo(mavenSession, mojoExecution);
-        checkProperties((PlantUMLMojo) mojo);
-    }
-
-    protected void checkProperties(final PlantUMLMojo mojo) {
-        assertNotNull(mojo.outputDirectory);
+        final PlantUMLMojo mojo = (PlantUMLMojo) maven.lookupConfiguredMojo(mavenSession, mojoExecution);
 
         /* check default values */
         // check outputDirectory
+        assertNotNull(mojo.outputDirectory);
         final Path plantumlTargetDir = Paths.get(basedir.getAbsolutePath().toString(), "target/plantuml");
         assertEquals(plantumlTargetDir.toAbsolutePath().toFile(), mojo.outputDirectory);
         // outputInSourceDirectory

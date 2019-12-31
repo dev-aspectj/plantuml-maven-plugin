@@ -64,8 +64,7 @@ public class PlantUMLMojoUnitTest {
     @Test
     public void basicTest() throws Exception {
         maven.executeMojo(basedir, "generate", newParameter("name", "value"));
-        assertFilesPresent(basedir, "target/plantuml/AblaufManuelleGenerierung.png");
-        assertFilesPresent(basedir, "target/plantuml/QueueStatechart.png");
+        assertFilesPresent(basedir, "target/plantuml/Donors.png");
     }
 
     @Test

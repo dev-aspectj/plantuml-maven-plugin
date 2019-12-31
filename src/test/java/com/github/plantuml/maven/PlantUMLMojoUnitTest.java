@@ -29,7 +29,6 @@ import org.apache.maven.project.MavenProject;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -50,9 +49,6 @@ public class PlantUMLMojoUnitTest {
 
     @Rule
     public final TestMavenRuntime maven = new TestMavenRuntime();
-
-    @Rule
-    public ExpectedException exceptionRule = ExpectedException.none();
 
     protected File basedir = null;
 

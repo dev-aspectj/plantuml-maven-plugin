@@ -32,7 +32,7 @@ import static io.takari.maven.testing.TestMavenRuntime.newParameter;
 import static io.takari.maven.testing.TestResources.assertFilesPresent;
 
 // http://takari.io/book/70-testing.html
-public class SimpleImageIntegrationTest {
+public class SimpleExampleIntegrationTest {
 
     @Rule
     public final TestResources resources = new TestResources("src/examples", "target/test-examples");
@@ -45,8 +45,8 @@ public class SimpleImageIntegrationTest {
     public void generatePngExample() throws Exception {
         final File basedir = resources.getBasedir("example");
         maven.executeMojo(basedir, "generate", newParameter("unused", "unused"));
-        assertFilesPresent(basedir, "target/plantuml/src/main/plantuml/Statechart.png");
-        assertFilesPresent(basedir, "target/plantuml/src/main/plantuml/QueueStatechart.png");
+        assertFilesPresent(basedir, "target/plantuml/Statechart.png");
+        assertFilesPresent(basedir, "target/plantuml/QueueStatechart.png");
     }
 }
 

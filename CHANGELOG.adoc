@@ -8,6 +8,22 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 == [undelivered]
 === Added
 
+* n/a
+
+=== Changed
+
+* n/a
+
+### Removed
+
+* n/a
+
+
+== [1.5.1] delivered 2019-12-31
+=== Added
+
+* https://github.com/FunThomas424242/plantuml-maven-plugin/issues/17[issue 17] add back2back tests for prev plugins
+* https://github.com/FunThomas424242/plantuml-maven-plugin/issues/17[issue 17] fix truncatePattern
 * https://github.com/FunThomas424242/plantuml-maven-plugin/issues/5[issue 5] unit tests added
 * https://github.com/FunThomas424242/plantuml-maven-plugin/issues/5[issue 5] missing licenses added
 * https://github.com/FunThomas424242/plantuml-maven-plugin/issues/6[issue 6] integretion tests added

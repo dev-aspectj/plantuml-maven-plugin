@@ -20,45 +20,64 @@ package com.github.plantuml.maven;
  * #L%
  */
 
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.testing.AbstractMojoTestCase;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import io.takari.maven.testing.TestMavenRuntime;
+import io.takari.maven.testing.TestResources;
+import org.apache.maven.execution.MavenSession;
+import org.apache.maven.plugin.MojoExecution;
+import org.apache.maven.project.MavenProject;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assumptions.assumingThat;
+import static io.takari.maven.testing.TestMavenRuntime.newParameter;
+import static io.takari.maven.testing.TestResources.assertFilesPresent;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+
+public class PlantUMLMojoUnitTest {
+
+    @Rule
+    public final TestResources resources = new TestResources("src/test/resources/unit", "target/test-unit");
+
+    @Rule
+    public final TestMavenRuntime maven = new TestMavenRuntime();
+
+    protected File basedir = null;
+
+    @Before
+    public void setUpTestCase() throws Exception {
+        basedir = resources.getBasedir("project-to-test");
+        // exceptionRule.expect(RuntimeException.class);
+    }
 
 
-// https://maven.apache.org/plugin-developers/plugin-testing.html
-// https://cwiki.apache.org/confluence/display/MAVEN/Creating+a+Maven+Integration+Test
-public class PlantUMLMojoUnitTest extends AbstractMojoTestCase {
-
-
-    /**
-     * @throws Exception if any
-     */
     @Test
-    @DisplayName("Check default values of mojo parameters")
-    public void testSomething() throws MojoExecutionException {
-        final File pom = Paths.get("src/test/resources/unit/project-to-test/pom.xml").toFile();
-        assumingThat(pom == null || !pom.exists(), () -> {
-            fail("test project pom not found");
-        });
+    public void basicTest() throws Exception {
+        maven.executeMojo(basedir, "generate", newParameter("name", "value"));
+        assertFilesPresent(basedir, "target/plantuml/Donors.png");
+        final File file = new File(basedir, "target/plantuml/Donors.png");
+        final BufferedImage image = ImageIO.read(file);
+        assertEquals(BufferedImage.TYPE_3BYTE_BGR, image.getType());
+    }
 
-        final PlantUMLMojo mojo = assertDoesNotThrow(() -> {
-            return (PlantUMLMojo) lookupMojo("generate", pom);
-        });
-        assertNotNull(mojo);
-        assertNotNull(mojo.outputDirectory);
+    @Test
+    public void checkParameter() throws Exception {
+        final MavenProject mavenProject = maven.readMavenProject(basedir);
+        final MavenSession mavenSession = maven.newMavenSession(mavenProject);
+        final MojoExecution mojoExecution = maven.newMojoExecution("generate");
+        final PlantUMLMojo mojo = (PlantUMLMojo) maven.lookupConfiguredMojo(mavenSession, mojoExecution);
 
         /* check default values */
         // check outputDirectory
-        final Path plantumlTargetDir = Paths.get("target/plantuml");
+        assertNotNull(mojo.outputDirectory);
+        final Path plantumlTargetDir = Paths.get(basedir.getAbsolutePath().toString(), "target/plantuml");
         assertEquals(plantumlTargetDir.toAbsolutePath().toFile(), mojo.outputDirectory);
         // outputInSourceDirectory
         assertFalse(mojo.outputInSourceDirectory);
@@ -67,34 +86,12 @@ public class PlantUMLMojoUnitTest extends AbstractMojoTestCase {
 
         /* check required parameters */
         assertNotNull(mojo.sourceFiles);
-        assertEquals(Paths.get("").toAbsolutePath().toString(), mojo.sourceFiles.getDirectory().toString());
+        assertEquals(basedir.getAbsolutePath().toString(), mojo.sourceFiles.getDirectory().toString());
 
-        // execute Mojo
-        mojo.execute();
-    }
-
-    /**
-     * @throws Exception if any
-     */
-    @Test
-    @Disabled("waiting to resolve issue #17")
-    @DisplayName("Check path truncate")
-    public void checkPathTruncate() throws MojoExecutionException {
-        final File pom = Paths.get("src/test/resources/unit/project-to-test/pom.xml").toFile();
-        assumingThat(pom == null || !pom.exists(), () -> {
-            fail("test project pom not found");
-        });
-
-        final PlantUMLMojo mojo = assertDoesNotThrow(() -> {
-            return (PlantUMLMojo) lookupMojo("generate", pom);
-        });
-
-        /* check required parameters */
+        /* check others parameters */
         assertNotNull(mojo.truncatePattern);
-//        assertEquals(Paths.get("").toAbsolutePath().toString(), mojo.sourceFiles.getDirectory().toString());
-
-        // execute Mojo
-        mojo.execute();
+        assertEquals("src/main/*", mojo.truncatePattern);
     }
+
 
 }

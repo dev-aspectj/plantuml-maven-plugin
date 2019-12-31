@@ -36,6 +36,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.List;
 
@@ -201,34 +202,52 @@ public final class PlantUMLMojo extends AbstractMojo {
             final List<File> files = FileUtils.getFiles(
                     baseDir,
                     getCommaSeparatedList(this.sourceFiles.getIncludes()),
-                    getCommaSeparatedList(this.sourceFiles.getExcludes())
-            );
+                    getCommaSeparatedList(this.sourceFiles.getExcludes()));
             for (final File file : files) {
-                File outDir;
-                if (this.outputInSourceDirectory) {
-                    outDir = file.getParentFile();
-                } else {
-                    outDir = outputDirectory.toPath().resolve(
-                            baseDir.toPath().relativize(file.toPath().getParent())).toFile();
-                }
-                this.option.setOutputDir(outDir);
-
-                FileFormatOption fileFormatOption = getFileFormatOption();
-                if (!overwrite) {
-                    String newName = fileFormatOption.getFileFormat().changeName(file.getName(), 0);
-                    File targetFile = new File(outDir, newName);
-                    if (targetFile.exists() && targetFile.lastModified() > file.lastModified()) {
-                        getLog().debug("Skip file <" + file + "> because target <" + targetFile + "> is newer");
-                        continue;
-                    }
-                }
-
                 getLog().info("Processing file <" + file + ">");
-                final SourceFileReader sourceFileReader =
-                        new SourceFileReader(
-                                Defines.createEmpty(), file, this.option.getOutputDir(),
-                                this.option.getConfig(), this.option.getCharset(),
-                                fileFormatOption);
+
+                if (this.outputInSourceDirectory) {
+                    this.option.setOutputDir(file.getParentFile());
+                } else {
+
+                    Path fileBasePath = file.getParentFile().toPath();
+
+                    if (truncatePattern != null && truncatePattern.length() > 0) {
+                        String[] truncateTokens = truncatePattern.split("/");
+                        int truncateIndex = 0;
+                        int endIndex = 0;
+                        for (final Path path : fileBasePath) {
+                            endIndex++;
+                            String currentTruncateToken = truncateTokens[truncateIndex];
+
+                            if ("*".equals(currentTruncateToken) || path.getFileName().toString().equals(currentTruncateToken)) {
+                                truncateIndex++;
+                                if (truncateIndex == truncateTokens.length) {
+                                    // All tokens are found
+                                    Path root = fileBasePath.getRoot();
+                                    Path subpath = fileBasePath.subpath(0, endIndex);
+                                    if (root != null) {
+                                        fileBasePath = root.resolve(subpath);
+                                    } else {
+                                        // this is very unlikely because the
+                                        // File has an absolute path
+                                        fileBasePath = subpath;
+                                    }
+                                    break;
+                                }
+                            } else {
+                                // doesn't match, reset the pattern
+                                truncateIndex = 0;
+                            }
+                        }
+                    }
+
+                    Path relativize = fileBasePath.relativize(file.toPath().getParent());
+                    File outputDir = outputDirectory.toPath().resolve(relativize).toFile();
+                    this.option.setOutputDir(outputDir);
+                }
+
+                final SourceFileReader sourceFileReader = new SourceFileReader( Defines.createEmpty(), file, this.option.getOutputDir(), this.option.getConfig(), this.option.getCharset(), this.option.getFileFormatOption());
                 for (final GeneratedImage image : sourceFileReader.getGeneratedImages()) {
                     getLog().debug(image + " " + image.getDescription());
                 }
@@ -259,5 +278,57 @@ public final class PlantUMLMojo extends AbstractMojo {
         }
         return formatOptions;
     }
+
+//    protected void handleTruncatePattern(final List<File> files) throws IOException {
+//        for (final File file : files) {
+//            getLog().info("Processing file <" + file + ">");
+//
+//            if (this.outputInSourceDirectory) {
+//                this.option.setOutputDir(file.getParentFile());
+//            } else {
+//
+//                final Path fileBasePath = file.getParentFile().toPath();
+//
+//                if (truncatePattern != null && truncatePattern.length() > 0) {
+//                    final String[] truncateTokens = truncatePattern.split("/");
+//                    int truncateIndex = 0;
+//                    int endIndex = 0;
+//                    for (final Path path : fileBasePath) {
+//                        endIndex++;
+//                        String currentTruncateToken = truncateTokens[truncateIndex];
+//
+//                        if ("*".equals(currentTruncateToken) || path.getFileName().toString().equals(currentTruncateToken)) {
+//                            truncateIndex++;
+//                            if (truncateIndex == truncateTokens.length) {
+//                                // All tokens are found
+//                                Path root = fileBasePath.getRoot();
+//                                Path subpath = fileBasePath.subpath(0, endIndex);
+//                                if (root != null) {
+//                                    fileBasePath = root.resolve(subpath);
+//                                } else {
+//                                    // this is very unlikely because the
+//                                    // File has an absolute path
+//                                    fileBasePath = subpath;
+//                                }
+//                                break;
+//                            }
+//                        } else {
+//                            // doesn't match, reset the pattern
+//                            truncateIndex = 0;
+//                        }
+//                    }
+//                }
+//
+//                Path relativize = fileBasePath.relativize(file.toPath().getParent());
+//                File outputDir = outputDirectory.toPath().resolve(relativize).toFile();
+//                this.option.setOutputDir(outputDir);
+//            }
+//
+//            final SourceFileReader sourceFileReader = new SourceFileReader(new Defines(), file, this.option.getOutputDir(), this.option.getConfig(), this.option.getCharset(), this.option.getFileFormatOption());
+//            for (final GeneratedImage image : sourceFileReader.getGeneratedImages()) {
+//                getLog().debug(image + " " + image.getDescription());
+//            }
+//        }
+//    }
 
 }

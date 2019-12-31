@@ -22,10 +22,14 @@ package com.github.plantuml.maven;
 
 import io.takari.maven.testing.TestMavenRuntime;
 import io.takari.maven.testing.TestResources;
+import org.apache.maven.model.Plugin;
+import org.apache.maven.model.PluginExecution;
+import org.apache.maven.project.MavenProject;
 import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.Map;
 
 import static io.takari.maven.testing.TestMavenRuntime.newParameter;
 import static io.takari.maven.testing.TestResources.assertFilesPresent;
@@ -38,28 +42,25 @@ public class PlantUMLMojoUnitTest {
     public final TestMavenRuntime maven = new TestMavenRuntime();
 
     @Test
-    public void test() throws Exception {
+    public void basicTest() throws Exception {
         File basedir = resources.getBasedir("project-to-test");
         maven.executeMojo(basedir, "generate", newParameter("name", "value"));
         assertFilesPresent(basedir, "target/plantuml/AblaufManuelleGenerierung.png");
         assertFilesPresent(basedir, "target/plantuml/QueueStatechart.png");
     }
 
+    @Test
+    public void checkParameter() throws Exception {
+        File basedir = resources.getBasedir("project-to-test");
+        final MavenProject mavenProject = maven.readMavenProject(basedir);
+        mavenProject.getBasedir();
+        final Plugin plugin = mavenProject.getPlugin("com.github.funthomas424242:plantuml-maven-plugin");
+        final Map<String, PluginExecution> executionMap = plugin.getExecutionsAsMap();
+//        executionMap.get("");
 
-//    /**
-//     * @throws Exception if any
-//     */
-//    @Test
-//    public void testSomething() {
-//        final File pom = Paths.get("src/test/resources/unit/project-to-test/pom.xml").toFile();
-//        assumingThat(pom == null || !pom.exists(), () -> {
-//            fail("test project pom not found");
-//        });
-//
-//        final PlantUMLMojo mojo = assertDoesNotThrow(() -> {
-//            return (PlantUMLMojo) lookupMojo("generate", pom);
-//        });
-//        assertNotNull(mojo);
+    }
+
+
 //        assertNotNull(mojo.outputDirectory);
 //
 //        /* check default values */

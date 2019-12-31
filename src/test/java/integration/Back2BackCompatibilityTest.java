@@ -72,6 +72,31 @@ public class Back2BackCompatibilityTest {
         assertFilesPresent(basedir, "target/plantuml/AblaufManuelleGenerierung.png");
         assertFilesPresent(basedir, "target/plantuml/QueueStatechart.png");
     }
+
+    @Test
+    public void checkGifLwMojo() throws Exception {
+        final File basedir = resources.getBasedir("truncate-project");
+        final MavenExecution mavenExecution = maven
+                .forProject(basedir)
+                .withCliOption("-Pgiflw");
+        final MavenExecutionResult result = mavenExecution.execute("clean", "com.github.jmdesprez:plantuml-maven-plugin:generate");
+        result.assertErrorFreeLog();
+        assertFilesPresent(basedir, "target/plantuml/AblaufManuelleGenerierung.png");
+        assertFilesPresent(basedir, "target/plantuml/QueueStatechart.png");
+    }
+
+    @Test
+    public void checkJeluardMojo() throws Exception {
+        final File basedir = resources.getBasedir("truncate-project");
+        final MavenExecution mavenExecution = maven
+                .forProject(basedir)
+                .withCliOption("-Pjeluard");
+        final MavenExecutionResult result = mavenExecution.execute("clean", "com.github.jeluard:plantuml-maven-plugin:generate");
+        result.assertErrorFreeLog();
+        // HINT: jeluard plugin does not support truncatePattern
+        assertFilesPresent(basedir, "target/plantuml/src/main/plantuml/AblaufManuelleGenerierung.png");
+        assertFilesPresent(basedir, "target/plantuml/src/main/plantuml/QueueStatechart.png");
+    }
 }
 
 

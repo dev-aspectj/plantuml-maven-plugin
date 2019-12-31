@@ -38,14 +38,14 @@ import static io.takari.maven.testing.TestResources.assertFilesPresent;
 // http://takari.io/book/70-testing.html
 @RunWith(MavenJUnitTestRunner.class)
 @MavenVersions({"3.6.3"})
-public class SimpleCompatibilityIntegrationTest {
+public class Back2BackCompatibilityTest {
 
     @Rule
     public final TestResources resources = new TestResources("src/test/resources/integration", "target/test-integration");
 
     public final MavenRuntime maven;
 
-    public SimpleCompatibilityIntegrationTest(MavenRuntime.MavenRuntimeBuilder builder) throws Exception {
+    public Back2BackCompatibilityTest(MavenRuntime.MavenRuntimeBuilder builder) throws Exception {
         this.maven = builder.withCliOptions("-B", "-U").build();
     }
 

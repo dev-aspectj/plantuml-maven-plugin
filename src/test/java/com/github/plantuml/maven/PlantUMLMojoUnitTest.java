@@ -31,6 +31,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -65,6 +67,9 @@ public class PlantUMLMojoUnitTest {
     public void basicTest() throws Exception {
         maven.executeMojo(basedir, "generate", newParameter("name", "value"));
         assertFilesPresent(basedir, "target/plantuml/Donors.png");
+        final File file = new File(basedir, "target/plantuml/Donors.png");
+        final BufferedImage image = ImageIO.read(file);
+        assertEquals(BufferedImage.TYPE_3BYTE_BGR, image.getType());
     }
 
     @Test
@@ -81,7 +86,7 @@ public class PlantUMLMojoUnitTest {
 
         /* check default values */
         // check outputDirectory
-        final Path plantumlTargetDir = Paths.get(basedir.getAbsolutePath().toString(),"target/plantuml");
+        final Path plantumlTargetDir = Paths.get(basedir.getAbsolutePath().toString(), "target/plantuml");
         assertEquals(plantumlTargetDir.toAbsolutePath().toFile(), mojo.outputDirectory);
         // outputInSourceDirectory
         assertFalse(mojo.outputInSourceDirectory);

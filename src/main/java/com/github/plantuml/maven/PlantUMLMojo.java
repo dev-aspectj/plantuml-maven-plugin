@@ -247,7 +247,7 @@ public final class PlantUMLMojo extends AbstractMojo {
                     this.option.setOutputDir(outputDir);
                 }
 
-                final SourceFileReader sourceFileReader = new SourceFileReader(new Defines(), file, this.option.getOutputDir(), this.option.getConfig(), this.option.getCharset(), this.option.getFileFormatOption());
+                final SourceFileReader sourceFileReader = new SourceFileReader( Defines.createEmpty(), file, this.option.getOutputDir(), this.option.getConfig(), this.option.getCharset(), this.option.getFileFormatOption());
                 for (final GeneratedImage image : sourceFileReader.getGeneratedImages()) {
                     getLog().debug(image + " " + image.getDescription());
                 }

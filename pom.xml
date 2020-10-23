@@ -5,7 +5,7 @@
 
     <groupId>com.github.funthomas424242</groupId>
     <artifactId>plantuml-maven-plugin</artifactId>
-    <version>1.5.1</version>
+    <version>1.5.2-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>Maven PlantUML plugin</name>
@@ -55,7 +55,6 @@
         <mavenVersion>3.6.3</mavenVersion>
         <java.build.version>13</java.build.version>
         <java.target.version>11</java.target.version>
-        <maven.compiler.release>${java.target.version}</maven.compiler.release>
     </properties>
 
     <dependencies>
@@ -331,6 +330,33 @@
     </build>
 
     <profiles>
+        <profile>
+            <id>java-8</id>
+            <activation>
+                <jdk>1.8</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.target>1.8</maven.compiler.target>
+                <java.build.version>1.8</java.build.version>
+                <java.target.version>1.8</java.target.version>
+                <maven.compiler.source>1.8</maven.compiler.source>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration combine.self="override">
+                            <encoding>UTF-8</encoding>
+                            <compilerArgs>
+                                <arg>-Xlint:all</arg>
+                            </compilerArgs>
+                            <fork>true</fork>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <profile>
             <id>release</id>
             <build>

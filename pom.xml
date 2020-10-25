@@ -490,6 +490,13 @@
                 <role>developer</role>
             </roles>
         </contributor>
+        <contributor>
+            <name>Martin Goldhahn</name>
+            <url>https://github.com/maddingo</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </contributor>
     </contributors>
 
     <!-- needed for license header -->

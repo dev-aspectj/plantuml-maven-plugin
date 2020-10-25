@@ -13,7 +13,7 @@
     <description>
         A maven plugin to generate UML diagrams using PlantUML syntax
     </description>
-    <url>https://github.com/FunThomas424242/plantuml-maven-plugin</url>
+    <url>https://github.com/Huluvu424242/plantuml-maven-plugin</url>
     <licenses>
         <license>
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
@@ -24,23 +24,23 @@
         </license>
     </licenses>
     <scm>
-        <url>scm:git:https://github.com/FunThomas424242/plantuml-maven-plugin</url>
+        <url>scm:git:https://github.com/Huluvu424242/plantuml-maven-plugin</url>
         <connection>scm:git:git@github.com:funthomas424242/maven-plantuml-plugin</connection>
         <developerConnection>scm:git:git@github.com:funthomas424242/plantuml-maven-plugin.git</developerConnection>
     </scm>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/FunThomas424242/plantuml-maven-plugin/issues/new</url>
+        <url>https://github.com/Huluvu424242/plantuml-maven-plugin/issues/new</url>
     </issueManagement>
     <ciManagement>
         <system>Travis</system>
-        <url>https://travis-ci.org/FunThomas424242/plantuml-maven-plugin</url>
+        <url>https://travis-ci.org/Huluvu424242/plantuml-maven-plugin</url>
     </ciManagement>
     <distributionManagement>
         <repository>
             <id>github</id>
-            <name>GitHub FunThomas424242 Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/FunThomas424242/${project.artifactId}</url>
+            <name>GitHub Huluvu424242 Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Huluvu424242/${project.artifactId}</url>
         </repository>
     </distributionManagement>
 
@@ -61,7 +61,7 @@
         <dependency>
             <groupId>net.sourceforge.plantuml</groupId>
             <artifactId>plantuml</artifactId>
-            <version>1.2019.13</version>
+            <version>1.2020.19</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -102,13 +102,13 @@
         <dependency>
             <groupId>io.takari.maven.plugins</groupId>
             <artifactId>takari-plugin-testing</artifactId>
-            <version>2.9.2</version>
+            <version>3.0.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.takari.maven.plugins</groupId>
             <artifactId>takari-plugin-integration-testing</artifactId>
-            <version>2.9.2</version>
+            <version>3.0.0</version>
             <type>pom</type>
             <scope>test</scope>
         </dependency>
@@ -122,7 +122,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.5.2</version>
+            <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -206,7 +206,7 @@
             <plugin>
                 <groupId>io.takari.maven.plugins</groupId>
                 <artifactId>takari-lifecycle-plugin</artifactId>
-                <version>1.13.9</version>
+                <version>2.0.0</version>
                 <extensions>true</extensions>
                 <executions>
                     <execution>
@@ -258,7 +258,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -286,15 +286,15 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.1.1</version>
+                    <version>3.2.0</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.1.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.8.2</version>
+                    <version>3.9.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
@@ -484,8 +484,8 @@
         </contributor>
         <contributor>
             <name>Huluvu424242 alias FunThomas424242 (Thomas Schubert)</name>
-            <email>funthomas424242@gmail.com</email>
-            <url>https://github.com/FunThomas424242</url>
+            <email>huluvu424242@gmail.com</email>
+            <url>https://github.com/Huluvu424242</url>
             <roles>
                 <role>developer</role>
             </roles>

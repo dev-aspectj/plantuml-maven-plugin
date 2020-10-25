@@ -30,7 +30,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <pluginversion>${it-project.version}</pluginversion>
-        <plantumlversion>7999</plantumlversion>
+        <plantumlversion>1.2020.19</plantumlversion>
     </properties>
 
     <profiles>
@@ -56,7 +56,7 @@
                             <dependency>
                                 <groupId>net.sourceforge.plantuml</groupId>
                                 <artifactId>plantuml</artifactId>
-                                <version>1.2019.13</version>
+                                <version>1.2020.19</version>
                                 <scope>runtime</scope>
                             </dependency>
                         </dependencies>
@@ -163,7 +163,7 @@
                             <dependency>
                                 <groupId>net.sourceforge.plantuml</groupId>
                                 <artifactId>plantuml</artifactId>
-                                <version>8039</version>
+                                <version>1.2020.19</version>
                                 <scope>runtime</scope>
                             </dependency>
                         </dependencies>

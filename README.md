@@ -1,6 +1,7 @@
 [![Apache 2.0 License](https://img.shields.io/badge/License-Apache%202.0-blue)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.funthomas424242/plantuml-maven-plugin/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.github.funthomas424242/plantuml-maven-plugin)
 [![Build Status](https://travis-ci.org/Huluvu424242/plantuml-maven-plugin.svg?branch=master)](https://travis-ci.org/Huluvu424242/plantuml-maven-plugin)
+![Github CI Build](https://github.com/Huluvu424242/plantuml-maven-plugin/workflows/Github%20CI%20Build/badge.svg)
 [![Codacy code quality](https://api.codacy.com/project/badge/Grade/88bf76546176437ea389629a2087d1b5)](https://www.codacy.com/app/Huluvu424242/plantuml-maven-plugin?utm_source=github.com&utm_medium=referral&utm_content=Huluvu424242/plantuml-maven-plugin&utm_campaign=Badge_Grade)
 [![Scrum Board](http://images.webestools.com/buttons.php?frm=2&btn_type=11&txt=Scrum%20Board&scaledwidth="15%")](https://github.com/Huluvu424242/plantuml-maven-plugin/projects/1)
 

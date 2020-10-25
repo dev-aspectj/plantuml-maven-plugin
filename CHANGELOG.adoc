@@ -18,6 +18,22 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 
 * n/a
 
+== [1.5.2] delivered 2020-10-25
+=== Added
+
+* https://github.com/FunThomas424242/plantuml-maven-plugin/issues/21[issue 21] support java 8 builds
+* new profile "pruefeVersionen" for versions to upgrade
+
+=== Changed
+
+* maven plugins versions upgrade
+* security issue fixed - junit version upgrade to 4.13.1
+
+### Removed
+
+* default versions check during the build
+* compatibillity test temporary disabled (compatibillity to other forks)
+
 
 == [1.5.1] delivered 2019-12-31
 === Added

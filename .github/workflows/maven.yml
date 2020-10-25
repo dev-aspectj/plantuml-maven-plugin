@@ -14,4 +14,8 @@ jobs:
       with:
         java-version: '13'
     - name: Build with Maven
-      run: ./mvnw -U -Prelease clean site install
+      run: |
+        ./mvnw    -Pjava-8 clean site install
+        ./mvnw -U -PpruefeVersionen,release clean site install
+        ./mvnw    -Pjava8ci clean site install
+

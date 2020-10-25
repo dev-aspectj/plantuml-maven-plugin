@@ -27,6 +27,7 @@ import io.takari.maven.testing.executor.MavenExecutionResult;
 import io.takari.maven.testing.executor.MavenRuntime;
 import io.takari.maven.testing.executor.MavenVersions;
 import io.takari.maven.testing.executor.junit.MavenJUnitTestRunner;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,6 +39,7 @@ import static io.takari.maven.testing.TestResources.assertFilesPresent;
 // http://takari.io/book/70-testing.html
 @RunWith(MavenJUnitTestRunner.class)
 @MavenVersions({"3.6.3"})
+@Ignore
 public class Back2BackCompatibilityTest {
 
     @Rule

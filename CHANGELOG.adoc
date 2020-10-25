@@ -30,11 +30,11 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 * upgrade versions of maven plugins
 * upgrade versions of deps
 * security issue fixed - junit version upgrade to 4.13.1
+* compatibillity test changed to usage of plantuml internal dot tool
 
 ### Removed
 
 * default versions check during the build
-* compatibillity test temporary disabled (compatibillity to other forks)
 
 
 == [1.5.1] delivered 2019-12-31

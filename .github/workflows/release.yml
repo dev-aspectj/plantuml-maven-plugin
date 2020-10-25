@@ -23,4 +23,5 @@ jobs:
       run: |
         mkdir ~/.m2
         echo "<settings><servers><server><id>github</id><username>OWNER</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
-        ./mvnw -U -Pheadless clean site install deploy
+        ./mvnw -U -Pjava8ci clean install deploy
+        ./mvnw -U -Prelease site install deploy

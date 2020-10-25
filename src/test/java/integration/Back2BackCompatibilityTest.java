@@ -52,7 +52,7 @@ public class Back2BackCompatibilityTest {
     }
 
     @Test
-    public void checkFunThomas424242Mojo() throws Exception {
+    public void checkHuluvu424242Mojo() throws Exception {
         final File basedir = resources.getBasedir("truncate-project");
         final MavenExecution mavenExecution = maven
                 .forProject(basedir)

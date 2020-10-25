@@ -13,7 +13,7 @@
     <description>
         A maven plugin to generate UML diagrams using PlantUML syntax
     </description>
-    <url>https://github.com/FunThomas424242/plantuml-maven-plugin</url>
+    <url>https://github.com/Huluvu424242/plantuml-maven-plugin</url>
     <licenses>
         <license>
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
@@ -24,23 +24,23 @@
         </license>
     </licenses>
     <scm>
-        <url>scm:git:https://github.com/FunThomas424242/plantuml-maven-plugin</url>
+        <url>scm:git:https://github.com/Huluvu424242/plantuml-maven-plugin</url>
         <connection>scm:git:git@github.com:funthomas424242/maven-plantuml-plugin</connection>
         <developerConnection>scm:git:git@github.com:funthomas424242/plantuml-maven-plugin.git</developerConnection>
     </scm>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/FunThomas424242/plantuml-maven-plugin/issues/new</url>
+        <url>https://github.com/Huluvu424242/plantuml-maven-plugin/issues/new</url>
     </issueManagement>
     <ciManagement>
         <system>Travis</system>
-        <url>https://travis-ci.org/FunThomas424242/plantuml-maven-plugin</url>
+        <url>https://travis-ci.org/Huluvu424242/plantuml-maven-plugin</url>
     </ciManagement>
     <distributionManagement>
         <repository>
             <id>github</id>
-            <name>GitHub FunThomas424242 Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/FunThomas424242/${project.artifactId}</url>
+            <name>GitHub Huluvu424242 Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Huluvu424242/${project.artifactId}</url>
         </repository>
     </distributionManagement>
 
@@ -483,9 +483,9 @@
             </roles>
         </contributor>
         <contributor>
-            <name>Huluvu424242 alias FunThomas424242 (Thomas Schubert)</name>
+            <name>Huluvu424242 alias Huluvu424242 (Thomas Schubert)</name>
             <email>funthomas424242@gmail.com</email>
-            <url>https://github.com/FunThomas424242</url>
+            <url>https://github.com/Huluvu424242</url>
             <roles>
                 <role>developer</role>
             </roles>

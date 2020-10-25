@@ -32,6 +32,7 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 ### Removed
 
 * default versions check during the build
+* compatibillity test temporary disabled (compatibillity to other forks)
 
 
 == [1.5.1] delivered 2019-12-31

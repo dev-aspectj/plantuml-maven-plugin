@@ -27,7 +27,8 @@ The versioning is along the rules of  http://semver.org/lang/de/[Semantic Versio
 === Changed
 
 * repo owner changed from FunThomas424242 to Huluvu424242
-* maven plugins versions upgrade
+* upgrade versions of maven plugins
+* upgrade versions of deps
 * security issue fixed - junit version upgrade to 4.13.1
 
 ### Removed

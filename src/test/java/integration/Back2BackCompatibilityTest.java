@@ -39,7 +39,7 @@ import static io.takari.maven.testing.TestResources.assertFilesPresent;
 // http://takari.io/book/70-testing.html
 @RunWith(MavenJUnitTestRunner.class)
 @MavenVersions({"3.6.3"})
-//@Ignore
+@Ignore
 public class Back2BackCompatibilityTest {
 
     @Rule

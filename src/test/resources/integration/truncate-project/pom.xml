@@ -68,8 +68,8 @@
             <id>bvfalcon</id>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>bintray-bvfalcon</id>
-                    <url>https://dl.bintray.com/jmdesprez/maven</url>
+                    <id>mulesoft</id>
+                    <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
                 </pluginRepository>
             </pluginRepositories>
             <build>
@@ -104,8 +104,8 @@
             <id>giflw</id>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>bintray-giflw</id>
-                    <url>https://dl.bintray.com/jmdesprez/maven</url>
+                    <id>mulesoft</id>
+                    <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
                 </pluginRepository>
             </pluginRepositories>
             <build>

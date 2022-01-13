@@ -54,16 +54,20 @@ public class Back2BackCompatibilityTest {
 
     @Test
     public void checkHuluvu424242Mojo() throws Exception {
+        // This plugin works with both the Smetana engine and with a local GraphViz installation.
         checkMojo("funthomas424242", true);
     }
 
     @Test
     public void checkJmdesprezMojo() throws Exception {
+        // ATTENTION: This legacy plugin needs an old API and a local GraphViz installation.
+        // If it was not for this test, no local GraphViz installation would be necessary for the whole test suite.
         checkMojo("jmdesprez", true);
     }
 
     @Test
     public void checkJeluardMojo() throws Exception {
+        // This plugin works with both the Smetana engine and with a local GraphViz installation.
         checkMojo("jeluard", false);
     }
 

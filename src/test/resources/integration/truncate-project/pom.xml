@@ -92,6 +92,10 @@
                             <dependency>
                                 <groupId>net.sourceforge.plantuml</groupId>
                                 <artifactId>plantuml</artifactId>
+                                <!--
+                                  ATTENTION: Do not upgrade to a recent version.
+                                  This legacy plugin needs an old API and a local GraphViz installation.
+                                -->
                                 <version>7999</version>
                                 <scope>runtime</scope>
                             </dependency>

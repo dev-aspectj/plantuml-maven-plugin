@@ -74,10 +74,10 @@ public class Back2BackCompatibilityTest {
         MavenExecutionResult result = mavenExecution.execute("clean", pluginMavenCoordinates);
         result.assertErrorFreeLog();
 
-        // 'jdot' binary not found 
+        // 'jdot' binary not found
         result.assertNoLogText("java.io.IOException");
 
-        // Problems interacting with Semtana API
+        // Problems interacting with Smetana API
         result.assertNoLogText("java.lang.InvocationTargetException");
         result.assertNoLogText("java.lang.UnsupportedOperationException");
         result.assertNoLogText("java.lang.ClassFormatError");
@@ -87,5 +87,3 @@ public class Back2BackCompatibilityTest {
         assertFilesPresent(baseDir, subDir + "QueueStatechart.png");
     }
 }
-
-
